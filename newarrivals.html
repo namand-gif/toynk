@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Arrivals — Toynk Wholesale</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --clr-accent: #e63028;
+  --clr-bg: #f5f5f5;
+  --clr-surface: #ffffff;
+  --clr-border: #e0e0e0;
+  --clr-text: #222222;
+  --clr-muted: #888888;
+  --clr-teal: #4a8a8f;
+  --font: 'Inter', sans-serif;
+  --r: 8px; --r-sm: 4px;
+  --t: 0.2s ease;
+  --pad: 2rem;
+  --max: 1280px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);font-size:1rem;color:var(--clr-text);background:#fff;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+ul{list-style:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* ── ANNOUNCEMENT BAR ── */
+.ann-bar{background:#d6eef9;color:#166c94;text-align:center;padding:.55rem 1rem;font-size:.82rem;font-weight:400;letter-spacing:.01em;border-bottom:1px solid #b8dff2}
+.ann-bar strong{font-weight:700}
+.ann-bar span{color:#5aadd4;margin:0 .6rem}
+
+/* ── HEADER ── */
+header{background:#fff;border-bottom:1px solid var(--clr-border);position:sticky;top:0;z-index:100}
+.hdr-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:90px;padding:0 var(--pad);position:relative}
+.hdr-left{display:flex;align-items:center}
+.hdr-center{display:flex;justify-content:center}
+.hdr-right{display:flex;align-items:center;justify-content:flex-end;gap:1.25rem}
+.h-search-ico{color:#444;padding:.4rem;display:flex;align-items:center;cursor:pointer;transition:color var(--t)}
+.h-search-ico:hover{color:var(--clr-accent)}
+.h-search-ico svg{width:22px;height:22px}
+.logo img{height:52px;width:auto}
+.logo-text{font-size:1.3rem;font-weight:800;color:var(--clr-text);display:none}
+.rep-locator{display:flex;flex-direction:column;align-items:center;line-height:1.15;color:#3d6b6b;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:color var(--t);white-space:nowrap}
+.rep-locator:hover{color:var(--clr-accent)}
+.btn-signin{display:flex;align-items:center;gap:.4rem;color:#333;font-size:.82rem;font-weight:500;transition:color var(--t);white-space:nowrap}
+.btn-signin:hover{color:var(--clr-accent)}
+.btn-signin .signin-icon{width:32px;height:32px;border:1.5px solid #bbb;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color var(--t)}
+.btn-signin:hover .signin-icon{border-color:var(--clr-accent)}
+.btn-signin .signin-icon svg{width:17px;height:17px}
+.ico-btn{color:#333;padding:.3rem;display:flex;align-items:center;position:relative;transition:color var(--t)}
+.ico-btn:hover{color:var(--clr-accent)}
+.ico-btn svg{width:26px;height:26px}
+.cart-badge{position:absolute;top:0;right:0;background:var(--clr-accent);color:#fff;font-size:9px;font-weight:700;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.hdr-nav{background:#fff}
+.nav-list{display:flex;align-items:center;justify-content:center;gap:0;height:50px}
+.nav-link{color:#333;font-size:.8rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:.5rem 1.4rem;transition:color var(--t);white-space:nowrap;display:flex;align-items:center;gap:.3rem}
+.nav-link:hover,.nav-link.active{color:var(--clr-accent)}
+.nav-link svg{width:10px;height:10px;opacity:.6}
+
+/* Search overlay */
+.search-overlay{position:fixed;top:0;left:0;right:0;background:#fff;display:flex;align-items:center;justify-content:center;gap:1rem;padding:0 2rem;height:90px;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s;z-index:9999;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+.search-overlay.open{opacity:1;visibility:visible}
+.search-overlay-bar{display:flex;align-items:center;gap:.65rem;border:1.5px solid #ccc;border-radius:var(--r);padding:.65rem 1.1rem;background:#fff;width:min(680px,70%)}
+.search-overlay-bar svg.s-ico{width:18px;height:18px;color:#999;flex-shrink:0}
+.search-overlay-bar input{flex:1;border:none;outline:none;font-size:.95rem;color:var(--clr-text);font-family:var(--font)}
+.search-overlay-bar input::placeholder{color:#aaa}
+.search-close{color:#555;cursor:pointer;display:flex;align-items:center;transition:color var(--t)}
+.search-close svg{width:24px;height:24px}
+
+/* ── HERO BANNER ── */
+.na-hero{background:#f2f2f2;display:grid;grid-template-columns:1fr 1fr;min-height:280px;overflow:hidden;margin:1rem var(--pad);border-radius:var(--r)}
+.na-hero-text{display:flex;flex-direction:column;justify-content:center;padding:3rem 3rem 3rem var(--pad)}
+.na-back{display:flex;align-items:center;gap:.4rem;font-size:.85rem;color:#555;margin-bottom:1.5rem;cursor:pointer;transition:color var(--t)}
+.na-back:hover{color:var(--clr-accent)}
+.na-back svg{width:16px;height:16px}
+.na-hero-title{font-size:2.5rem;font-weight:800;letter-spacing:-.02em;margin-bottom:1rem;color:#111}
+.na-hero-desc{font-size:.92rem;color:#555;max-width:480px;line-height:1.7}
+.na-hero-imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.na-hero-img{overflow:hidden;background:#ddd}
+.na-hero-img img{width:100%;height:280px;object-fit:cover;display:block}
+.na-hero-img div{width:100%;height:280px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#aaa}
+
+/* ── FILTER BAR ── */
+.filter-bar{padding:.9rem var(--pad);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.filter-btn{display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:#333;border:1px solid #d0d0d0;border-radius:var(--r-sm);padding:.45rem .9rem;background:#fff;transition:border-color var(--t),color var(--t);cursor:pointer}
+.filter-btn:hover{border-color:var(--clr-teal);color:var(--clr-teal)}
+.filter-btn svg{width:10px;height:10px;opacity:.6}
+.filter-spacer{flex:1}
+.filter-tags{padding:.6rem var(--pad);display:flex;align-items:center;gap:.5rem}
+.filter-clear{font-size:.82rem;font-weight:700;color:var(--clr-teal);border:1px solid var(--clr-teal);border-radius:var(--r-sm);padding:.3rem .75rem;background:#fff;cursor:pointer;transition:background var(--t),color var(--t)}
+.filter-clear:hover{background:var(--clr-teal);color:#fff}
+.filter-tag{display:flex;align-items:center;gap:.35rem;font-size:.82rem;color:#333;border:1px solid #d0d0d0;border-radius:var(--r-sm);padding:.3rem .75rem;background:#fff}
+.filter-tag-remove{color:#888;cursor:pointer;line-height:1;font-size:.9rem;transition:color var(--t)}
+.filter-tag-remove:hover{color:#333}
+.filter-icon{color:#555;cursor:pointer;display:flex;align-items:center}
+.filter-icon svg{width:18px;height:18px}
+.sort-wrap{display:flex;align-items:center;gap:.5rem;border:1px solid #d0d0d0;border-radius:var(--r-sm);padding:.45rem .9rem;background:#fff}
+.sort-label{font-size:.82rem;color:#555}
+.sort-select{font-size:.82rem;color:#333;border:none;outline:none;font-family:var(--font);cursor:pointer;background:none;font-weight:600}
+
+/* ── PRODUCT GRID ── */
+.products-section{width:100%;padding:1.5rem var(--pad) 3rem}
+.products-count{font-size:.85rem;color:#555;margin-bottom:1.5rem;padding:0 var(--pad)}
+.products-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0 8px}
+.product-card{display:flex;flex-direction:column;gap:.6rem;cursor:pointer;padding:0 0 1.25rem}
+.product-img{position:relative;background:#f5f5f5;overflow:hidden;aspect-ratio:1;width:100%}
+.product-img img{width:100%;height:100%;object-fit:cover;display:block}
+.product-img .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#bbb;background:#f0f0f0}
+.product-name{font-size:.82rem;color:#222;line-height:1.4;font-weight:400;padding:0 .75rem}
+.product-price{font-size:.82rem;color:var(--clr-teal);font-weight:600;padding:0 .75rem}
+.quick-view{position:absolute;bottom:0;left:0;right:0;background:rgba(200,200,200,.82);border:none;border-radius:0;padding:.6rem 1rem;font-size:.8rem;font-weight:500;color:#333;white-space:nowrap;opacity:0;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.quick-view svg{width:15px;height:15px;flex-shrink:0}
+.product-card:hover .quick-view{opacity:1}
+
+/* Show All card */
+.show-all-card{display:flex;flex-direction:column;cursor:pointer}
+.show-all-box{aspect-ratio:1;width:100%;background:linear-gradient(135deg,#e63028,#b01e18);display:flex;align-items:center;justify-content:center}
+.show-all-box span{background:rgba(0,0,0,.6);color:#fff;font-size:.8rem;font-weight:700;letter-spacing:.1em;padding:.5rem 1.1rem;border-radius:3px}
+
+@media(max-width:1024px){.products-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:768px){.products-grid{grid-template-columns:repeat(2,1fr)}.na-hero{grid-template-columns:1fr}.na-hero-imgs{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  Easy Wholesale Ordering — <strong>$150 Minimum</strong><span>•</span><strong>Only 2 Per Style</strong><span>•</span>In-Stock &amp; Ready to Ship
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-top">
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-overlay-bar">
+        <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search..." id="searchInput" autocomplete="off">
+      </div>
+      <button class="search-close" id="searchClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="hdr-left">
+      <button class="h-search-ico" id="searchTrigger" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+
+    <div class="hdr-center">
+      <div class="logo">
+        <img src="https://toynkb2b.com/wp-content/uploads/2024/05/image-2-1.png" alt="Toynk Wholesale"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-text">TOYNK B2B</span>
+      </div>
+    </div>
+
+    <div class="hdr-right">
+      <a href="#" class="rep-locator">REP<br>LOCATOR</a>
+      <a href="login.html" class="btn-signin">
+        <span class="signin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
+        Sign In/Sign Up
+      </a>
+      <a href="#" class="ico-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h12l2 7H4L6 2z"/><path d="M4 9v11a2 2 0 002 2h12a2 2 0 002-2V9"/><path d="M9 9v3a3 3 0 006 0V9"/></svg>
+        <span class="cart-badge">0</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hdr-nav">
+    <div class="wrap">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#" class="nav-link">Collections <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li><a href="newarrivals.html" class="nav-link active">New Arrivals</a></li>
+          <li><a href="#" class="nav-link">Preorders <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li><a href="#" class="nav-link">Seasonal <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li><a href="#" class="nav-link">Shop All <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li><a href="#" class="nav-link">Catalogs</a></li>
+          <li><a href="#" class="nav-link">Shows &amp; Appointments</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- HERO BANNER -->
+<div class="na-hero">
+  <div class="na-hero-text">
+    <a href="index.html" class="na-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      New Arrivals
+    </a>
+    <div class="na-hero-title">New Arrivals</div>
+    <div class="na-hero-desc">Fresh finds just landed! Explore our newest licensed collectibles, apparel, drinkware, and fan favorites — in-stock and ready to ship to your store.</div>
+  </div>
+  <div class="na-hero-imgs">
+    <div class="na-hero-img"><div style="background:linear-gradient(135deg,#1a1a2e,#0f3460);width:100%;height:280px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;font-weight:600">Marvel</div></div>
+    <div class="na-hero-img"><div style="background:linear-gradient(135deg,#2d1b69,#5b21b6);width:100%;height:280px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;font-weight:600">Star Wars</div></div>
+    <div class="na-hero-img"><div style="background:linear-gradient(135deg,#1a3a2a,#166534);width:100%;height:280px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;font-weight:600">Pokemon</div></div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn">Category <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+  <button class="filter-btn">Collections <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+  <button class="filter-btn">Inventory Availability <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+  <button class="filter-btn">Inventory Count <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+  <div class="filter-spacer"></div>
+  <div class="filter-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+  </div>
+  <div class="sort-wrap">
+  <span class="sort-label">Sort By:</span>
+  <select class="sort-select">
+    <option>Relevance</option>
+    <option>New Arrivals</option>
+    <option>Price - Low to High</option>
+    <option>Price - High to Low</option>
+    <option>Name Ascending</option>
+    <option>Name Descending</option>
+    <option>SKU ID Ascending</option>
+    <option>SKU ID Descending</option>
+  </select>
+  </div>
+</div>
+
+<!-- FILTER TAGS -->
+<div class="filter-tags">
+  <button class="filter-clear">Clear All</button>
+  <div class="filter-tag">Available <span class="filter-tag-remove">×</span></div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products-section">
+  <div class="products-count">Showing 1–20 of 61 Products</div>
+  <div class="products-grid">
+
+    <!-- 20 products -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;font-size:.8rem">Marvel Figure</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Marvel Avengers Deluxe Figure Set</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#1a0a2e,#3d1870);color:#fff;font-size:.8rem">Star Wars</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Star Wars Mandalorian Collector Mug</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#1a3a2a,#166534);color:#fff;font-size:.8rem">Pokémon</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Pokémon Pikachu Plush Toy (12")</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#5c1a1a,#991b1b);color:#fff;font-size:.8rem">Disney</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Disney Mickey Mouse Enamel Pin Set</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#2d1b69,#5b21b6);color:#fff;font-size:.8rem">Harry Potter</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Harry Potter Hogwarts Drinkware Set</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#1e3a5f,#1e6b8a);color:#fff;font-size:.8rem">DC Universe</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">DC Batman Collector Bobblehead</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#3d1500,#6b2500);color:#fff;font-size:.8rem">Naruto</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Naruto Shippuden Vinyl Figure</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#1a3a5c,#2d4a7a);color:#fff;font-size:.8rem">Stranger Things</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Stranger Things Eleven Hoodie</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#111,#444);color:#fff;font-size:.8rem">TMNT</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">TMNT Leonardo Retro T-Shirt</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#1a2e1a,#2d5a2d);color:#fff;font-size:.8rem">Godzilla</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Godzilla King of Monsters Statue</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#2e1a0a,#5a3010);color:#fff;font-size:.8rem">One Piece</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">One Piece Luffy Collectible Figure</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#0a1a2e,#1a3a5c);color:#fff;font-size:.8rem">Super Mario</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Super Mario Bros. Mushroom Tumbler</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#2e0a0a,#6b1515);color:#fff;font-size:.8rem">Fallout</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Fallout Vault Boy Enamel Pin</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#1a1a1a,#3d3d00);color:#fff;font-size:.8rem">Hello Kitty</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Hello Kitty Plush Backpack</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#1a0a2e,#4b0082);color:#fff;font-size:.8rem">South Park</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">South Park Characters Shot Glass Set</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#0a2e1a,#0d5c30);color:#fff;font-size:.8rem">Scooby-Doo</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Scooby-Doo Mystery Machine Replica</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#2e1a2e,#5a1a5a);color:#fff;font-size:.8rem">Nightmare</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Nightmare Before Christmas Jack Statue</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#2e2e0a,#5a5a10);color:#fff;font-size:.8rem">Peanuts</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Peanuts Snoopy Holiday Ornament Set</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#0a2e2e,#0d5c5c);color:#fff;font-size:.8rem">Street Fighter</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Street Fighter Ryu Vinyl Figure</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <div class="ph" style="background:linear-gradient(135deg,#2e0a2e,#6b156b);color:#fff;font-size:.8rem">Yu-Gi-Oh!</div>
+        <div class="quick-view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/></svg> Quick View</div>
+      </div>
+      <div class="product-name">Yu-Gi-Oh! Dark Magician Collector Set</div>
+      <div class="product-price">Login to view price</div>
+    </div>
+
+    <!-- 21st card: Show All -->
+    <div class="show-all-card">
+      <div class="show-all-box">
+        <span>SHOW ALL</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  const trigger = document.getElementById('searchTrigger');
+  const overlay = document.getElementById('searchOverlay');
+  const close   = document.getElementById('searchClose');
+  const input   = document.getElementById('searchInput');
+  trigger.addEventListener('click', ()=>{ overlay.classList.add('open'); input.focus(); });
+  close.addEventListener('click',   ()=>{ overlay.classList.remove('open'); input.value=''; });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') overlay.classList.remove('open'); });
+})();
+</script>
+
+<!-- FOOTER -->
+<footer style="background:#f0f0f0;padding:3rem 2rem 1.5rem;margin-top:3rem">
+  <div style="max-width:1280px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem">
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Learn More</div>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">About Us</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Catalogs</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Privacy Policy</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Terms &amp; Conditions</a>
+      </div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Customer Service</div>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Contact Us</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Rep Locator</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Orders &amp; Shipping</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Resale Certificates</a>
+      </div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Follow Us</div>
+        <div style="display:flex;gap:.75rem">
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.853 0 1.267.64 1.267 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.568 0-2.386-1.716-4.054-4.165-4.054-2.837 0-4.5 2.128-4.5 4.327 0 .857.33 1.775.741 2.276a.3.3 0 01.069.284c-.076.312-.244.995-.277 1.134-.044.183-.146.222-.336.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.522 0 10-4.477 10-10S17.522 2 12 2z"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #ddd;padding-top:1.25rem;display:flex;flex-direction:column;gap:.5rem">
+      <div style="font-size:.8rem;color:#888">Copyright &copy; 2026 Toynk Wholesale.</div>
+      <div style="font-size:.8rem;color:#555;font-weight:600">Powered By <a href="#" style="color:#4a8a8f;text-decoration:none">Wizcommerce</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

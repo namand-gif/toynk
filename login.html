@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In / Sign Up — Toynk Wholesale</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --clr-accent: #e63028;
+  --clr-accent-dark: #c02020;
+  --clr-bg: #ffffff;
+  --clr-surface: #ffffff;
+  --clr-border: #e0e0e0;
+  --clr-text: #222222;
+  --clr-muted: #666666;
+  --clr-teal: #4a8a8f;
+  --clr-teal-dark: #3a7175;
+  --font: 'Inter', sans-serif;
+  --r: 8px; --r-sm: 4px; --r-full: 999px;
+  --t: 0.2s ease;
+  --pad: 2rem;
+  --max: 1280px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);font-size:1rem;color:var(--clr-text);background:#fff;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+ul{list-style:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* ── ANNOUNCEMENT BAR ── */
+.ann-bar{background:#d6eef9;color:#166c94;text-align:center;padding:.55rem 1rem;font-size:.82rem;font-weight:400;letter-spacing:.01em;border-bottom:1px solid #b8dff2}
+.ann-bar strong{font-weight:700}
+.ann-bar span{color:#5aadd4;margin:0 .6rem}
+
+/* ── HEADER ── */
+header{background:#fff;border-bottom:1px solid var(--clr-border);position:sticky;top:0;z-index:100}
+.hdr-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:90px;padding:0 var(--pad)}
+.hdr-left{display:flex;align-items:center}
+.hdr-center{display:flex;justify-content:center}
+.hdr-right{display:flex;align-items:center;justify-content:flex-end;gap:1.25rem}
+
+.h-search-ico{color:#444;padding:.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:color var(--t)}
+.h-search-ico:hover{color:var(--clr-accent)}
+.h-search-ico svg{width:22px;height:22px}
+
+.logo img{height:52px;width:auto}
+.logo-text{font-size:1.3rem;font-weight:800;letter-spacing:-.02em;color:var(--clr-text);display:none}
+
+.rep-locator{display:flex;flex-direction:column;align-items:center;line-height:1.15;color:#3d6b6b;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:color var(--t);white-space:nowrap}
+.rep-locator:hover{color:var(--clr-accent)}
+
+.btn-signin{display:flex;align-items:center;gap:.4rem;color:#333;font-size:.82rem;font-weight:500;transition:color var(--t);white-space:nowrap}
+.btn-signin:hover{color:var(--clr-accent)}
+.btn-signin .signin-icon{width:32px;height:32px;border:1.5px solid #bbb;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color var(--t)}
+.btn-signin:hover .signin-icon{border-color:var(--clr-accent)}
+.btn-signin .signin-icon svg{width:17px;height:17px}
+
+.ico-btn{color:#333;padding:.3rem;display:flex;align-items:center;justify-content:center;position:relative;transition:color var(--t)}
+.ico-btn:hover{color:var(--clr-accent)}
+.ico-btn svg{width:26px;height:26px}
+.cart-badge{position:absolute;top:0;right:0;background:var(--clr-accent);color:#fff;font-size:9px;font-weight:700;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+/* Nav */
+.hdr-nav{background:#fff}
+.nav-list{display:flex;align-items:center;justify-content:center;gap:0;height:50px}
+.nav-item{position:relative}
+.nav-link{color:#333;font-size:.8rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:.5rem 1.4rem;transition:color var(--t);white-space:nowrap;display:flex;align-items:center;gap:.3rem}
+.nav-link:hover{color:var(--clr-accent)}
+.nav-link svg{width:10px;height:10px;flex-shrink:0;opacity:.6}
+
+/* ── LOGIN SECTION ── */
+.login-page{min-height:calc(100vh - 180px);display:flex;align-items:center;justify-content:center;padding:4rem var(--pad);background:#fff}
+.login-box{width:100%;max-width:560px;text-align:center}
+.login-title{font-size:1.5rem;font-weight:700;color:var(--clr-text);margin-bottom:2.5rem;line-height:1.4}
+.login-form{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem}
+.input-wrap{position:relative}
+.input-wrap input{width:100%;border:1px solid #d0d0d0;border-radius:var(--r);padding:.9rem 1.1rem;font-size:.95rem;font-family:var(--font);color:var(--clr-text);outline:none;transition:border-color var(--t);background:#fff}
+.input-wrap input::placeholder{color:#aaa}
+.input-wrap input:focus{border-color:var(--clr-teal)}
+.input-wrap .eye-btn{position:absolute;right:.9rem;top:50%;transform:translateY(-50%);color:#aaa;cursor:pointer;display:flex;align-items:center;transition:color var(--t)}
+.input-wrap .eye-btn:hover{color:#555}
+.input-wrap .eye-btn svg{width:20px;height:20px}
+.forgot{text-align:right;font-size:.85rem;color:var(--clr-muted);margin-top:-.25rem}
+.forgot a{color:var(--clr-muted);transition:color var(--t)}
+.forgot a:hover{color:var(--clr-teal)}
+.btn-login{width:100%;background:var(--clr-teal);color:#fff;font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:1rem;border-radius:var(--r);transition:background var(--t)}
+.btn-login:hover{background:var(--clr-teal-dark)}
+.divider{margin:2rem 0;border:none;border-top:1px solid var(--clr-border)}
+.signup-title{font-size:1.1rem;font-weight:700;color:var(--clr-text);margin-bottom:1.25rem;line-height:1.5}
+.btn-signup{display:inline-block;background:var(--clr-teal);color:#fff;font-size:.9rem;font-weight:700;letter-spacing:.04em;padding:.75rem 2rem;border-radius:var(--r);transition:background var(--t)}
+.btn-signup:hover{background:var(--clr-teal-dark)}
+
+/* Search overlay */
+.search-overlay{position:fixed;top:0;left:0;right:0;background:#fff;display:flex;align-items:center;justify-content:center;gap:1rem;padding:0 2rem;height:90px;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s;z-index:9999;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+.search-overlay.open{opacity:1;visibility:visible}
+.search-overlay-bar{display:flex;align-items:center;gap:.65rem;border:1.5px solid #ccc;border-radius:var(--r);padding:.65rem 1.1rem;background:#fff;width:min(680px,70%)}
+.search-overlay-bar svg.s-ico{width:18px;height:18px;color:#999;flex-shrink:0}
+.search-overlay-bar input{flex:1;border:none;outline:none;font-size:.95rem;color:var(--clr-text);font-family:var(--font)}
+.search-overlay-bar input::placeholder{color:#aaa}
+.search-ai-btn{color:#7c3aed;display:flex;align-items:center;cursor:pointer;transition:color var(--t)}
+.search-ai-btn:hover{color:#6d28d9}
+.search-ai-btn svg{width:22px;height:22px}
+.search-close{color:#555;cursor:pointer;display:flex;align-items:center;transition:color var(--t)}
+.search-close:hover{color:var(--clr-accent)}
+.search-close svg{width:24px;height:24px}
+
+/* ── SIGNUP MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9000;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal-box{background:#fff;border-radius:var(--r);width:100%;max-width:420px;overflow:hidden;transform:translateY(12px);transition:transform .25s ease}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;border-bottom:1px solid var(--clr-border)}
+.modal-hdr-title{font-size:1rem;font-weight:600;color:var(--clr-text)}
+.modal-close{width:30px;height:30px;border:1.5px solid #bbb;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#555;transition:border-color var(--t),color var(--t);flex-shrink:0}
+.modal-close:hover{border-color:#555;color:#222}
+.modal-close svg{width:14px;height:14px}
+.modal-body{padding:2rem 2rem 2.5rem;text-align:center}
+.modal-logo{height:130px;width:auto;margin:0 auto 1.5rem;object-fit:contain}
+.modal-q{font-size:1.05rem;font-weight:700;color:var(--clr-text);margin-bottom:.6rem;line-height:1.4}
+.modal-sub{font-size:.85rem;color:var(--clr-muted);margin-bottom:1.75rem}
+.modal-btns{display:flex;flex-direction:column;gap:.75rem}
+.modal-btn{width:100%;padding:.85rem;border-radius:var(--r-full);font-size:.95rem;font-weight:600;background:#f5c842;color:#222;transition:background var(--t),transform var(--t)}
+.modal-btn:hover{background:#e6b830;transform:translateY(-1px)}
+
+@media(max-width:768px){
+  :root{--pad:1rem}
+  .hdr-nav,.rep-locator,.btn-signin{display:none}
+  .login-title{font-size:1.2rem}
+  .modal-box{margin:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  Easy Wholesale Ordering — <strong>$150 Minimum</strong><span>•</span><strong>Only 2 Per Style</strong><span>•</span>In-Stock &amp; Ready to Ship
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-top" style="position:relative">
+
+    <!-- Search overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-overlay-bar">
+        <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search..." id="searchInput" autocomplete="off">
+        <button class="search-ai-btn" aria-label="AI image search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </button>
+      </div>
+      <button class="search-close" id="searchClose" aria-label="Close search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Left: search icon -->
+    <div class="hdr-left">
+      <button class="h-search-ico" id="searchTrigger" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+
+    <!-- Center: logo -->
+    <div class="hdr-center">
+      <div class="logo">
+        <img src="https://toynkb2b.com/wp-content/uploads/2024/05/image-2-1.png" alt="Toynk Wholesale"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-text">TOYNK B2B</span>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="hdr-right">
+      <a href="#" class="rep-locator">REP<br>LOCATOR</a>
+      <a href="login.html" class="btn-signin">
+        <span class="signin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
+        Sign In/Sign Up
+      </a>
+      <a href="#" class="ico-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h12l2 7H4L6 2z"/><path d="M4 9v11a2 2 0 002 2h12a2 2 0 002-2V9"/><path d="M9 9v3a3 3 0 006 0V9"/></svg>
+        <span class="cart-badge">0</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Nav bar -->
+  <div class="hdr-nav">
+    <div class="wrap">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#" class="nav-link">Brands <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Apparel <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Collectibles <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Home <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Toys &amp; Games <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Catalogs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Shows</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- LOGIN SECTION -->
+<main class="login-page">
+  <div class="login-box">
+    <h1 class="login-title">Welcome to Toynk B2B Wholesale!</h1>
+
+    <form class="login-form" onsubmit="return false">
+      <div class="input-wrap">
+        <input type="email" placeholder="Email*" autocomplete="email">
+      </div>
+      <div class="input-wrap">
+        <input type="password" placeholder="Password*" id="pwdInput" autocomplete="current-password">
+        <button type="button" class="eye-btn" id="eyeBtn" aria-label="Toggle password visibility">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </button>
+      </div>
+      <div class="forgot"><a href="#">Forgot Password?</a></div>
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+
+    <hr class="divider">
+
+    <p class="signup-title">Don't have an account or need to reactivate an existing account?</p>
+    <button class="btn-signup" id="openSignupModal">Sign Up Now!</button>
+  </div>
+</main>
+
+<!-- SIGNUP MODAL -->
+<div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <span class="modal-hdr-title" id="modalTitle">Choose customer type</span>
+      <button class="modal-close" id="closeModal" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <img class="modal-logo"
+        src="https://toynkb2b.com/wp-content/uploads/2024/05/image-2-1.png"
+        alt="Toynk B2B"
+        onerror="this.style.display='none'">
+      <p class="modal-q">Are you an existing customer or new to Toynk&nbsp;B2B?</p>
+      <p class="modal-sub">To get started, choose an option to sign up</p>
+      <div class="modal-btns">
+        <button class="modal-btn" onclick="window.location.href='register.html'">New Customer</button>
+        <button class="modal-btn">Existing Customer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Search overlay
+(function(){
+  const trigger = document.getElementById('searchTrigger');
+  const overlay = document.getElementById('searchOverlay');
+  const close   = document.getElementById('searchClose');
+  const input   = document.getElementById('searchInput');
+  trigger.addEventListener('click', ()=>{ overlay.classList.add('open'); input.focus(); });
+  close.addEventListener('click',   ()=>{ overlay.classList.remove('open'); input.value=''; });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') overlay.classList.remove('open'); });
+})();
+
+// Signup modal
+(function(){
+  const modal   = document.getElementById('signupModal');
+  const openBtn = document.getElementById('openSignupModal');
+  const closeBtn= document.getElementById('closeModal');
+  openBtn.addEventListener('click',  ()=> modal.classList.add('open'));
+  closeBtn.addEventListener('click', ()=> modal.classList.remove('open'));
+  modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('open'); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.classList.remove('open'); });
+})();
+
+// Password toggle
+document.getElementById('eyeBtn').addEventListener('click', function(){
+  const pwd = document.getElementById('pwdInput');
+  const isHidden = pwd.type === 'password';
+  pwd.type = isHidden ? 'text' : 'password';
+  this.innerHTML = isHidden
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><eye/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+});
+</script>
+
+<!-- FOOTER -->
+<footer style="background:#f0f0f0;padding:3rem 2rem 1.5rem;margin-top:3rem">
+  <div style="max-width:1280px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem">
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Learn More</div>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">About Us</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Catalogs</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Privacy Policy</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Terms &amp; Conditions</a>
+      </div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Customer Service</div>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Contact Us</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Rep Locator</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Orders &amp; Shipping</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Resale Certificates</a>
+      </div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Follow Us</div>
+        <div style="display:flex;gap:.75rem">
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.853 0 1.267.64 1.267 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.568 0-2.386-1.716-4.054-4.165-4.054-2.837 0-4.5 2.128-4.5 4.327 0 .857.33 1.775.741 2.276a.3.3 0 01.069.284c-.076.312-.244.995-.277 1.134-.044.183-.146.222-.336.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.522 0 10-4.477 10-10S17.522 2 12 2z"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #ddd;padding-top:1.25rem;display:flex;flex-direction:column;gap:.5rem">
+      <div style="font-size:.8rem;color:#888">Copyright &copy; 2026 Toynk Wholesale.</div>
+      <div style="font-size:.8rem;color:#555;font-weight:600">Powered By <a href="#" style="color:#4a8a8f;text-decoration:none">Wizcommerce</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
