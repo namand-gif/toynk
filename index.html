@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toynk Wholesale — Pop Culture Collectibles & Toys</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --clr-dark: #0f0f0f;
+  --clr-header: #111111;
+  --clr-accent: #e63028;
+  --clr-accent-dark: #c02020;
+  --clr-bg: #f5f5f5;
+  --clr-surface: #ffffff;
+  --clr-border: #e0e0e0;
+  --clr-text: #222222;
+  --clr-muted: #666666;
+  --clr-inv: #f5f5f5;
+  --clr-footer: #111111;
+  --font: 'Inter', sans-serif;
+  --r: 8px; --r-sm: 4px; --r-lg: 12px; --r-full: 999px;
+  --sh: 0 2px 8px rgba(0,0,0,.12);
+  --sh-lg: 0 8px 24px rgba(0,0,0,.18);
+  --t: 0.2s ease;
+  --pad: 2rem;
+  --max: 1280px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);font-size:1rem;color:var(--clr-text);background:var(--clr-bg);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+ul{list-style:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* ── ANNOUNCEMENT BAR ── */
+.ann-bar{background:#d6eef9;color:#166c94;text-align:center;padding:.55rem 1rem;font-size:.82rem;font-weight:400;letter-spacing:.01em;border-bottom:1px solid #b8dff2}
+.ann-bar strong{font-weight:700}
+.ann-bar span{color:#5aadd4;margin:0 .6rem}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--clr-border)}
+
+/* Top bar: search | logo | actions */
+.hdr-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:90px;padding:0 var(--pad)}
+.hdr-left{display:flex;align-items:center}
+.hdr-center{display:flex;justify-content:center}
+.hdr-right{display:flex;align-items:center;justify-content:flex-end;gap:1.25rem}
+
+/* Search icon only */
+.h-search-ico{color:#444;padding:.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:color var(--t)}
+.h-search-ico:hover{color:var(--clr-accent)}
+.h-search-ico svg{width:22px;height:22px}
+
+/* Search overlay — slides down from top of header */
+.search-overlay{position:fixed;top:0;left:0;right:0;background:#fff;display:flex;align-items:center;justify-content:center;gap:1rem;padding:0 2rem;height:90px;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s;z-index:9999;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+.search-overlay.open{opacity:1;visibility:visible}
+.search-overlay-bar{display:flex;align-items:center;gap:.65rem;border:1.5px solid #ccc;border-radius:var(--r);padding:.65rem 1.1rem;background:#fff;width:min(680px,70%)}
+.search-overlay-bar svg.s-ico{width:18px;height:18px;color:#999;flex-shrink:0}
+.search-overlay-bar input{flex:1;border:none;outline:none;font-size:.95rem;color:var(--clr-text);font-family:var(--font)}
+.search-overlay-bar input::placeholder{color:#aaa}
+.search-ai-btn{color:#7c3aed;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:color var(--t)}
+.search-ai-btn:hover{color:#6d28d9}
+.search-ai-btn svg{width:22px;height:22px}
+.search-close{color:#555;cursor:pointer;transition:color var(--t);flex-shrink:0;display:flex;align-items:center}
+.search-close:hover{color:var(--clr-accent)}
+.search-close svg{width:24px;height:24px}
+
+/* Logo */
+.logo img{height:52px;width:auto}
+.logo-text{font-size:1.3rem;font-weight:800;letter-spacing:-.02em;color:var(--clr-text);display:none}
+
+/* Rep Locator */
+.rep-locator{display:flex;flex-direction:column;align-items:center;line-height:1.15;color:#3d6b6b;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:color var(--t);white-space:nowrap}
+.rep-locator:hover{color:var(--clr-accent)}
+
+/* Sign in */
+.btn-signin{display:flex;align-items:center;gap:.4rem;color:#333;font-size:.82rem;font-weight:500;transition:color var(--t);white-space:nowrap}
+.btn-signin:hover{color:var(--clr-accent)}
+.btn-signin .signin-icon{width:32px;height:32px;border:1.5px solid #bbb;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color var(--t)}
+.btn-signin:hover .signin-icon{border-color:var(--clr-accent)}
+.btn-signin .signin-icon svg{width:17px;height:17px}
+
+/* Cart icon */
+.ico-btn{color:#333;padding:.3rem;display:flex;align-items:center;justify-content:center;position:relative;transition:color var(--t)}
+.ico-btn:hover{color:var(--clr-accent)}
+.ico-btn svg{width:26px;height:26px}
+.cart-badge{position:absolute;top:0;right:0;background:var(--clr-accent);color:#fff;font-size:9px;font-weight:700;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+/* Wishlist */
+.wish-btn{color:#333;display:flex;align-items:center;justify-content:center;transition:color var(--t)}
+.wish-btn:hover{color:var(--clr-accent)}
+.wish-btn svg{width:22px;height:22px}
+
+/* Nav bar below */
+.hdr-nav{background:#fff;border-top:none}
+.nav-list{display:flex;align-items:center;justify-content:center;gap:0;height:50px}
+.nav-item{position:relative}
+.nav-link{color:#333;font-size:.8rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:.5rem 1.4rem;transition:color var(--t);white-space:nowrap;display:flex;align-items:center;gap:.3rem}
+.nav-link:hover{color:var(--clr-accent)}
+.nav-link svg{width:10px;height:10px;flex-shrink:0;opacity:.6}
+
+/* Mega-menu dropdown */
+.drop{position:fixed;left:0;right:0;top:auto;background:#fff;border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border);box-shadow:0 8px 32px rgba(0,0,0,.1);padding:2rem var(--pad);display:flex;gap:2.5rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity var(--t),transform var(--t),visibility var(--t);z-index:300}
+.nav-item:hover .drop,.nav-item:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}
+
+/* Left: links section — 50% */
+.drop-left{flex:1;min-width:0;padding-right:2rem}
+.drop-section-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#999;margin-bottom:1rem}
+.drop-cols{columns:2;column-gap:2rem}
+.drop-link{display:block;padding:.35rem 0;font-size:.9rem;font-weight:400;color:#444;transition:color var(--t);break-inside:avoid;white-space:nowrap}
+.drop-link:hover{color:var(--clr-accent)}
+
+/* Right: featured image cards — 50% */
+.drop-cards{flex:1;display:flex;gap:.75rem;min-width:0}
+.drop-card{position:relative;flex:1;min-height:280px;border-radius:var(--r);overflow:hidden}
+.drop-card-over{position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 100%)}
+.drop-card-title{color:#fff;font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.3rem}
+.drop-card-desc{color:rgba(255,255,255,.82);font-size:.75rem;line-height:1.4}
+
+.hamburger{display:none;color:#333;padding:.4rem}
+.hamburger svg{width:22px;height:22px}
+
+/* ── HERO ── */
+.hero{position:relative;overflow:hidden}
+.hero-track{display:flex;transition:transform .6s ease}
+.hero-slide{min-width:100%;min-height:500px;display:flex;align-items:stretch}
+.s1{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)}
+.s2{background:linear-gradient(135deg,#1c0a00,#3d1500,#6b2500)}
+.s3{background:linear-gradient(135deg,#0d2137,#1a3a5c,#0a3060)}
+.s4{background:linear-gradient(135deg,#1a0a2e,#2d1450,#3d1870)}
+.hero-inner{display:flex;align-items:center;width:100%;max-width:var(--max);margin:0 auto;padding:4rem var(--pad);gap:3rem}
+.hero-txt{flex:1;color:#fff}
+.hero-super{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--clr-accent);display:block;margin-bottom:.6rem}
+.hero-h1{font-size:3.2rem;font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:.5rem}
+.hero-sub{font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1rem}
+.hero-p{font-size:.95rem;color:rgba(255,255,255,.65);max-width:460px;margin-bottom:2rem;line-height:1.7}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-pri{display:inline-flex;align-items:center;gap:.4rem;background:var(--clr-accent);color:#fff;font-size:.9rem;font-weight:700;padding:13px 26px;border-radius:var(--r-full);transition:background var(--t),transform var(--t)}
+.btn-pri:hover{background:var(--clr-accent-dark);transform:translateY(-2px)}
+.btn-sec{display:inline-flex;align-items:center;gap:.4rem;color:#fff;font-size:.9rem;font-weight:600;padding:13px 26px;border:2px solid rgba(255,255,255,.45);border-radius:var(--r-full);transition:border-color var(--t),background var(--t)}
+.btn-sec:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.hero-img{flex:1;display:flex;align-items:center;justify-content:center}
+.hero-img-box{width:400px;height:360px;border-radius:var(--r-lg);overflow:hidden;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+.hero-img-box img{width:100%;height:100%;object-fit:contain;padding:2rem}
+.hero-ph{text-align:center;color:rgba(255,255,255,.3);font-size:.8rem;padding:1rem}
+
+/* Hero controls */
+.hero-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.35);color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:10;transition:background var(--t)}
+.hero-arr:hover{background:rgba(0,0,0,.65)}
+.hero-arr svg{width:20px;height:20px}
+.hero-arr.prev{left:1rem}
+.hero-arr.next{right:1rem}
+.hero-dots{position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:10}
+.hdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);border:none;cursor:pointer;transition:background var(--t),transform var(--t)}
+.hdot.on{background:#fff;transform:scale(1.4)}
+
+/* ── TRUST STRIP ── */
+.trust{background:var(--clr-surface);border-bottom:1px solid var(--clr-border)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.trust-item{display:flex;align-items:center;gap:.75rem;padding:1.25rem 1rem;border-right:1px solid var(--clr-border)}
+.trust-item:last-child{border-right:none}
+.t-icon{width:42px;height:42px;background:#fff0f0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--clr-accent)}
+.t-icon svg{width:20px;height:20px}
+.t-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.15rem}
+.t-desc{font-size:.72rem;color:var(--clr-muted);line-height:1.4}
+
+/* ── SECTION COMMON ── */
+.sec{padding:4rem 0}
+.sec-sm{padding:3rem 0}
+.sec-dark{background:var(--clr-header)}
+.sec-white{background:var(--clr-surface)}
+.sec-hdr{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2rem}
+.sec-title{font-size:1.5rem;font-weight:800;letter-spacing:-.01em}
+.sec-link{font-size:.78rem;font-weight:600;color:var(--clr-accent);text-transform:uppercase;letter-spacing:.06em}
+.sec-link:hover{text-decoration:underline}
+
+/* ── TABS ── */
+.tab-bar{display:flex;gap:.5rem;border-bottom:2px solid var(--clr-border);margin-bottom:2rem}
+.t-btn{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.6rem 1rem;color:var(--clr-muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:color var(--t),border-color var(--t)}
+.t-btn.on{color:var(--clr-accent);border-bottom-color:var(--clr-accent)}
+.t-btn:hover{color:var(--clr-accent)}
+.t-panel{display:none}
+.t-panel.on{display:grid}
+
+/* ── CATEGORY TILES ── */
+.cat-grid{grid-template-columns:repeat(5,1fr);gap:1rem}
+.cat-tile{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:1;cursor:pointer;transition:transform var(--t),box-shadow var(--t)}
+.cat-tile:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+.cat-tile-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.cat-tile-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 55%);display:flex;align-items:flex-end;padding:1rem}
+.cat-tile-lbl{color:#fff;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;line-height:1.3}
+
+/* ── BRAND TILES ── */
+.brand-grid{grid-template-columns:repeat(6,1fr);gap:.75rem}
+.brand-tile{background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--r);padding:.75rem;display:flex;align-items:center;justify-content:center;aspect-ratio:2/1;transition:border-color var(--t),box-shadow var(--t)}
+.brand-tile:hover{border-color:var(--clr-accent);box-shadow:var(--sh)}
+.brand-tile img{max-height:46px;max-width:100%;object-fit:contain;filter:grayscale(1);transition:filter var(--t)}
+.brand-tile:hover img{filter:none}
+.brand-tile span{font-size:.75rem;font-weight:700;color:var(--clr-muted)}
+
+/* ── PRODUCT CARDS ── */
+.pcard{background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--r);overflow:hidden;transition:box-shadow var(--t),transform var(--t);position:relative}
+.pcard:hover{box-shadow:var(--sh-lg);transform:translateY(-3px)}
+.pc-img{position:relative;aspect-ratio:1;overflow:hidden;background:#f0f0f0}
+.pc-img img{width:100%;height:100%;object-fit:contain;padding:.75rem;transition:transform .4s ease}
+.pc-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.4)}
+.pcard:hover .pc-img img{transform:scale(1.05)}
+.pc-badge{position:absolute;top:.5rem;left:.5rem;background:var(--clr-accent);color:#fff;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:var(--r-full)}
+.pc-quick{position:absolute;bottom:.75rem;left:50%;transform:translateX(-50%) translateY(6px);opacity:0;background:rgba(0,0,0,.72);color:#fff;font-size:.7rem;font-weight:600;padding:.3rem .75rem;border-radius:var(--r-full);white-space:nowrap;transition:opacity var(--t),transform var(--t)}
+.pcard:hover .pc-quick{opacity:1;transform:translateX(-50%) translateY(0)}
+.pc-body{padding:.75rem}
+.pc-sku{font-size:.68rem;color:var(--clr-muted);margin-bottom:.2rem}
+.pc-name{font-size:.82rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:.5rem}
+.pc-login{font-size:.72rem;color:var(--clr-accent);font-weight:600}
+.pc-cta{display:block;width:100%;background:var(--clr-accent);color:#fff;font-size:.75rem;font-weight:700;text-align:center;padding:.45rem;border-radius:var(--r-sm);margin-top:.6rem;transition:background var(--t)}
+.pc-cta:hover{background:var(--clr-accent-dark)}
+
+/* ── CAROUSEL ── */
+.car-wrap{position:relative}
+.car-outer{overflow:hidden}
+.car-track{display:flex;gap:1rem;transition:transform .4s ease}
+.car-track .pcard{flex-shrink:0}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--clr-surface);border:1px solid var(--clr-border);color:var(--clr-text);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);transition:background var(--t),color var(--t);z-index:5}
+.car-btn:hover{background:var(--clr-accent);color:#fff;border-color:var(--clr-accent)}
+.car-btn svg{width:16px;height:16px}
+.car-btn.prev{left:-18px}
+.car-btn.next{right:-18px}
+
+/* ── PROMO CARDS ── */
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.promo-card{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;cursor:pointer}
+.promo-card .bg{width:100%;height:100%}
+.promo-card:hover .bg{transform:scale(1.05);transition:transform .5s ease}
+.promo-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.15) 55%,transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem}
+.promo-lbl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--clr-accent);margin-bottom:.4rem}
+.promo-title{color:#fff;font-size:1.25rem;font-weight:800;line-height:1.2;margin-bottom:.35rem}
+.promo-cta{color:rgba(255,255,255,.75);font-size:.8rem;font-weight:600}
+.promo-card:hover .promo-cta{color:#fff}
+.pb1{background:linear-gradient(135deg,#1a0a2e,#5b21b6)}
+.pb2{background:linear-gradient(135deg,#1a3a1a,#166534)}
+.pb3{background:linear-gradient(135deg,#2d0a0a,#991b1b)}
+
+/* ── CAT PROMO STRIP ── */
+.cps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.cp{background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--r-lg);overflow:hidden}
+.cp-img{aspect-ratio:16/9;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cp-body{padding:1rem;display:flex;align-items:center;justify-content:space-between}
+.cp-title{font-size:1rem;font-weight:700}
+.cp-link{font-size:.78rem;font-weight:600;color:var(--clr-accent);padding:.35rem .85rem;border:1.5px solid var(--clr-accent);border-radius:var(--r-full);transition:background var(--t),color var(--t)}
+.cp-link:hover{background:var(--clr-accent);color:#fff}
+
+/* ── DARK SECTION TABS ── */
+.sec-dark .tab-bar{border-bottom-color:rgba(255,255,255,.15)}
+.sec-dark .t-btn{color:rgba(255,255,255,.45)}
+.sec-dark .t-btn.on{color:#fff;border-bottom-color:var(--clr-accent)}
+.sec-dark .t-btn:hover{color:rgba(255,255,255,.8)}
+.sec-dark .sec-title{color:#fff}
+.sec-dark .sec-link{color:var(--clr-accent)}
+.sec-dark .pcard{background:#1e1e1e;border-color:#333}
+.sec-dark .pc-name{color:#eee}
+.sec-dark .pc-sku{color:#888}
+
+/* ── STOCK YOUR STORE GRID ── */
+.sys-section{background:#fff;padding:4rem 0}
+.sys-inner{max-width:var(--max);margin:0 auto;padding:0 4rem}
+.sys-title{font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:2.5rem;letter-spacing:.02em;color:#111}
+.sys-top{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.sys-tall{grid-row:span 2;display:grid;grid-template-rows:1fr 1fr;gap:1.25rem}
+.sys-bottom{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.sys-card{position:relative;border-radius:14px;overflow:hidden;cursor:pointer;display:block;text-decoration:none}
+.sys-card-tall{border-radius:14px;overflow:hidden;position:relative;cursor:pointer;display:block;text-decoration:none}
+.sys-img{background:#d8d8d8;overflow:hidden;width:100%;height:100%;border-radius:14px}
+.sys-img-inner{width:100%;height:100%;background:#d0d0d0;transition:transform .4s ease;min-height:260px}
+.sys-card:hover .sys-img-inner,
+.sys-card-tall:hover .sys-img-inner{transform:scale(1.06)}
+.sys-top-left{display:grid;grid-template-rows:1fr 1fr;gap:1.25rem;height:560px}
+.sys-top-right{display:flex;flex-direction:column;gap:1.25rem;height:560px}
+.sys-top-right .sys-card{flex:1}
+.sys-top-right .sys-img-inner{min-height:0;height:100%}
+.sys-top-left .sys-card{flex:1;height:100%}
+.sys-top-left .sys-img{height:100%}
+.sys-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:rgba(0,0,0,.32)}
+.sys-cat{display:block;font-size:1.3rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.4rem;line-height:1.2}
+.sys-link{font-size:.75rem;font-weight:600;color:#fff;text-decoration:underline;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+
+/* ── BLOG SECTION ── */
+.blog-section{background:#fff;padding:4rem 0}
+.blog-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.blog-eyebrow{text-align:center;font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-bottom:.6rem}
+.blog-heading{text-align:center;font-size:2.6rem;font-weight:900;text-transform:uppercase;color:#111;margin-bottom:2.5rem;letter-spacing:.01em}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.blog-card{display:block;text-decoration:none;color:inherit}
+.blog-thumb{width:100%;aspect-ratio:4/3;background:#d8d8d8;border-radius:12px;margin-bottom:1rem;overflow:hidden}
+.blog-card-title{font-size:1rem;font-weight:800;text-transform:uppercase;color:#111;line-height:1.35;margin-bottom:.6rem}
+.blog-excerpt{font-size:.88rem;color:#555;line-height:1.6}
+
+/* ── HOTSPOT DISPLAY ── */
+.hs-section{background:#f9f9f7;padding:4rem 0}
+.hs-wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.hs-left{}
+.hs-eyebrow{font-size:.8rem;color:#888;letter-spacing:.05em;margin-bottom:.6rem}
+.hs-title{font-size:2rem;font-weight:700;color:#111;margin-bottom:.5rem;line-height:1.2}
+.hs-count{font-size:.85rem;color:#888;margin-bottom:1.5rem}
+.hs-list{border-top:1px solid #e8e8e8}
+.hs-item{display:grid;grid-template-columns:80px 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid #e8e8e8;align-items:center}
+.hs-thumb{width:80px;height:80px;background:#ececec;flex-shrink:0}
+.hs-meta{font-size:.75rem;color:#999;margin-bottom:.25rem}
+.hs-name{font-size:.95rem;font-weight:600;color:#111;margin-bottom:.2rem;line-height:1.3}
+.hs-sku{font-size:.75rem;color:#aaa;margin-bottom:.35rem}
+.hs-login{font-size:.82rem;font-weight:600;color:#4a8a8f;text-decoration:none}
+.hs-login:hover{text-decoration:underline}
+.hs-right{position:relative}
+.hs-img-wrap{position:relative;width:100%;aspect-ratio:4/3;background:#ddd;overflow:visible}
+.hs-placeholder{width:100%;height:100%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:.9rem;letter-spacing:.05em}
+.hs-dot{position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #3a7fc1;cursor:pointer;transform:translate(-50%,-50%);transition:transform .2s}
+.hs-dot:hover{transform:translate(-50%,-50%) scale(1.2)}
+.hs-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:8px;height:8px;border-radius:50%;background:#3a7fc1}
+.hs-tooltip{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 10px);background:#fff;border-radius:6px;padding:.5rem .85rem;font-size:.82rem;font-weight:600;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.18);pointer-events:none;opacity:0;transition:opacity .15s}
+.hs-dot:hover .hs-tooltip{opacity:1}
+
+/* ── SHOP BY NEW ── */
+.sbn-section{background:#fff;padding:3.5rem 0 4rem}
+.sbn-tabs{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem}
+.sbn-tab{font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:.85rem;border-bottom:3px solid transparent;margin-bottom:-1px;cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;font-family:var(--font);transition:color var(--t),border-color var(--t)}
+.sbn-tab.on{color:#111;border-bottom-color:#111}
+.sbn-tab:hover{color:#333}
+.sbn-panel{display:none;position:relative}
+.sbn-panel.on{display:block}
+.sbn-scroll-wrap{overflow:hidden}
+.sbn-track{display:flex;gap:1.25rem;transition:transform .4s ease;padding:0 5rem}
+.sbn-card{flex:0 0 calc(25% - 1rem);cursor:pointer;text-decoration:none;color:inherit}
+.sbn-img{width:100%;aspect-ratio:4/5;background:#e8e8e8;border-radius:0;margin-bottom:.85rem}
+.sbn-lbl{font-size:.9rem;font-weight:700;text-align:center;color:#111}
+.sbn-arrow{position:absolute;right:calc(var(--pad) - 1rem);top:40%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:background var(--t);z-index:5}
+.sbn-arrow:hover{background:#f5f5f5}
+.sbn-arrow svg{width:18px;height:18px;color:#333}
+.sbn-arrow-prev{left:calc(var(--pad) - 1rem);right:auto}
+
+/* ── FOOTER ── */
+footer{background:var(--clr-footer)}
+.ft-top{padding:4rem 0 3rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-logo img{height:38px;width:auto;margin-bottom:1rem;filter:brightness(0) invert(1)}
+.ft-logo .logo-fb{display:none;color:#fff;font-size:1.2rem;font-weight:800}
+.ft-desc{font-size:.82rem;line-height:1.7;color:rgba(255,255,255,.55);max-width:290px}
+.ft-addr{font-size:.78rem;color:rgba(255,255,255,.4);margin-top:.6rem}
+.ft-social{display:flex;gap:.6rem;margin-top:1rem}
+.soc-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);transition:background var(--t),color var(--t)}
+.soc-btn:hover{background:var(--clr-accent);color:#fff}
+.soc-btn svg{width:16px;height:16px}
+.ft-col-ttl{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fff;margin-bottom:1rem}
+.ft-links{display:flex;flex-direction:column;gap:.5rem}
+.ft-link{font-size:.82rem;color:rgba(255,255,255,.55);transition:color var(--t)}
+.ft-link:hover{color:var(--clr-accent)}
+.ft-bot{padding:1.25rem 0;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.35)}
+.pay-icons{display:flex;gap:.4rem;align-items:center}
+.pay{background:rgba(255,255,255,.1);border-radius:3px;padding:3px 7px;font-size:.65rem;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.02em}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .cat-grid{grid-template-columns:repeat(4,1fr)}
+  .brand-grid{grid-template-columns:repeat(4,1fr)}
+  .ft-top{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:768px){
+  :root{--pad:1rem}
+  .hdr-nav,.wish-btn,.btn-signin{display:none}
+  .hamburger{display:flex}
+  .hero-inner{flex-direction:column;padding:2rem var(--pad)}
+  .hero-h1{font-size:2rem}
+  .hero-img{width:100%}
+  .hero-img-box{width:100%;height:220px}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-item{border-right:none;border-bottom:1px solid var(--clr-border)}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .brand-grid{grid-template-columns:repeat(3,1fr)}
+  .promo-grid,.cps{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr;gap:1.5rem}
+  .ft-bot{flex-direction:column;gap:.75rem;text-align:center}
+}
+@media(max-width:480px){
+  .hero-h1{font-size:1.6rem}
+  .trust-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  Easy Wholesale Ordering — <strong>$150 Minimum</strong><span>•</span><strong>Only 2 Per Style</strong><span>•</span>In-Stock &amp; Ready to Ship
+</div>
+
+<!-- HEADER -->
+<header>
+  <!-- Top row: search | logo | actions -->
+  <div class="hdr-top" style="position:relative">
+
+    <!-- Search overlay (shown on search click) -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-overlay-bar">
+        <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search..." id="searchInput" autocomplete="off">
+        <button class="search-ai-btn" aria-label="AI image search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/><path d="M9 2h6" stroke-width="2.5" stroke-linecap="round"/><path d="M15.5 10.5l1.5-1.5" stroke-dasharray="1 2"/></svg>
+        </button>
+      </div>
+      <button class="search-close" id="searchClose" aria-label="Close search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Left: search icon -->
+    <div class="hdr-left">
+      <button class="h-search-ico" id="searchTrigger" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+
+    <!-- Center: logo -->
+    <div class="hdr-center">
+      <div class="logo">
+        <img src="https://toynkb2b.com/wp-content/uploads/2024/05/image-2-1.png" alt="Toynk Wholesale"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-text">TOYNK B2B</span>
+      </div>
+    </div>
+
+    <!-- Right: rep locator, sign in, cart, hamburger -->
+    <div class="hdr-right">
+      <a href="#" class="rep-locator">REP<br>LOCATOR</a>
+      <a href="login.html" class="btn-signin">
+        <span class="signin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
+        Sign In/Sign Up
+      </a>
+      <a href="#" class="ico-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h12l2 7H4L6 2z"/><path d="M4 9v11a2 2 0 002 2h12a2 2 0 002-2V9"/><path d="M9 9v3a3 3 0 006 0V9"/></svg>
+        <span class="cart-badge">0</span>
+      </a>
+      <button class="hamburger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Nav bar below -->
+  <div class="hdr-nav">
+    <div class="wrap">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#" class="nav-link">Collections
+              <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <div class="drop" style="align-items:stretch">
+              <div class="drop-left" style="padding-right:1.5rem">
+                <div class="drop-section-title">Collections</div>
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.1rem 1.5rem">
+                  <a class="drop-link" href="#">Toynk</a>
+                  <a class="drop-link" href="#">Cardsmiths</a>
+                  <a class="drop-link" href="#">Syndicate Collectibles</a>
+                  <a class="drop-link" href="#">Buffy the Vampire Slayer</a>
+                  <a class="drop-link" href="#">Chucky</a>
+                  <a class="drop-link" href="#">DC Universe</a>
+                  <a class="drop-link" href="#">Disney</a>
+                  <a class="drop-link" href="#">Doctor Who</a>
+                  <a class="drop-link" href="#">Evil Dead</a>
+                  <a class="drop-link" href="#">Fallout</a>
+                  <a class="drop-link" href="#">Friday the 13th</a>
+                  <a class="drop-link" href="#">Futurama</a>
+                  <a class="drop-link" href="#">Geeki Tiki</a>
+                  <a class="drop-link" href="#">Godzilla</a>
+                  <a class="drop-link" href="#">Harry Potter</a>
+                  <a class="drop-link" href="#">Hello Kitty</a>
+                  <a class="drop-link" href="#">Jaws</a>
+                  <a class="drop-link" href="#">Lord of the Rings</a>
+                  <a class="drop-link" href="#">Magic: The Gathering</a>
+                  <a class="drop-link" href="#">Marvel</a>
+                  <a class="drop-link" href="#">Masters of the Universe</a>
+                  <a class="drop-link" href="#">MLB · NBA · NFL</a>
+                  <a class="drop-link" href="#">Naruto</a>
+                  <a class="drop-link" href="#">Nightmare Before Christmas</a>
+                  <a class="drop-link" href="#">One Piece</a>
+                  <a class="drop-link" href="#">Pac-Man</a>
+                  <a class="drop-link" href="#">Peanuts</a>
+                  <a class="drop-link" href="#">Pokémon</a>
+                  <a class="drop-link" href="#">Resident Evil</a>
+                  <a class="drop-link" href="#">Scooby-Doo</a>
+                  <a class="drop-link" href="#">South Park</a>
+                  <a class="drop-link" href="#">Star Wars</a>
+                  <a class="drop-link" href="#">Stranger Things</a>
+                  <a class="drop-link" href="#">Street Fighter</a>
+                  <a class="drop-link" href="#">Super Mario</a>
+                  <a class="drop-link" href="#">Supernatural</a>
+                  <a class="drop-link" href="#">TMNT</a>
+                  <a class="drop-link" href="#">The Exorcist</a>
+                  <a class="drop-link" href="#">Yu-Gi-Oh!</a>
+                </div>
+              </div>
+              <div class="drop-cards" style="flex:0 0 240px;align-items:flex-start">
+                <a href="#" class="drop-card" style="width:240px;height:240px;min-height:unset;flex:none;display:block;text-decoration:none;">
+                  <img src="images/image6.png" style="width:100%;height:100%;object-fit:cover">
+                  <div class="drop-card-over" style="background:none;padding:0;bottom:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem">
+                    <span style="background:rgba(0,0,0,.75);color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.08em;padding:.35rem .75rem;border-radius:3px;transition:background .2s,transform .2s;display:inline-block" onmouseover="this.style.background='rgba(0,0,0,1)';this.style.transform='scale(1.08)'" onmouseout="this.style.background='rgba(0,0,0,.75)';this.style.transform='scale(1)'">SHOW ALL</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="newarrivals.html" class="nav-link">New Arrivals</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Preorders
+              <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <div class="drop">
+              <div class="drop-left">
+                <div class="drop-section-title">Preorders</div>
+                <div class="drop-cols">
+                  <a class="drop-link" href="#">Coming Soon</a>
+                  <a class="drop-link" href="#">Reserve Now</a>
+                  <a class="drop-link" href="#">View All Preorders →</a>
+                </div>
+              </div>
+              <div class="drop-cards">
+                <div class="drop-card">
+                  <img src="images/image1.png" style="width:100%;height:100%;object-fit:cover">
+                  <div class="drop-card-over">
+                    <div class="drop-card-title">Coming Soon</div>
+                    <div class="drop-card-desc">Reserve before they sell out.</div>
+                  </div>
+                </div>
+                <div class="drop-card">
+                  <img src="images/image4.png" style="width:100%;height:100%;object-fit:cover">
+                  <div class="drop-card-over">
+                    <div class="drop-card-title">Reserve Now</div>
+                    <div class="drop-card-desc">Secure your stock early.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Seasonal
+              <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <div class="drop">
+              <div class="drop-left">
+                <div class="drop-section-title">Seasonal</div>
+                <div class="drop-cols">
+                  <a class="drop-link" href="#">Halloween</a>
+                  <a class="drop-link" href="#">Christmas</a>
+                  <a class="drop-link" href="#">Valentine's Day</a>
+                  <a class="drop-link" href="#">Summer</a>
+                  <a class="drop-link" href="#">View All Seasonal →</a>
+                </div>
+              </div>
+              <div class="drop-cards">
+                <div class="drop-card">
+                  <img src="images/image8.png" style="width:100%;height:100%;object-fit:cover">
+                  <div class="drop-card-over">
+                    <div class="drop-card-title">Halloween</div>
+                    <div class="drop-card-desc">Costumes, decor &amp; collectibles.</div>
+                  </div>
+                </div>
+                <div class="drop-card">
+                  <img src="images/image2.png" style="width:100%;height:100%;object-fit:cover">
+                  <div class="drop-card-over">
+                    <div class="drop-card-title">Christmas</div>
+                    <div class="drop-card-desc">Holiday gifting, stocked &amp; ready.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Shop All
+              <svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <div class="drop">
+              <div class="drop-left">
+                <div class="drop-section-title">Shop All</div>
+                <div class="drop-cols">
+                  <a class="drop-link" href="#">Apparel</a>
+                  <a class="drop-link" href="#">Collectibles</a>
+                  <a class="drop-link" href="#">Home &amp; Office</a>
+                  <a class="drop-link" href="#">Toys &amp; Games</a>
+                  <a class="drop-link" href="#">View All Products →</a>
+                </div>
+              </div>
+              <div class="drop-cards">
+                <div class="drop-card">
+                  <img src="images/image5.png" style="width:100%;height:100%;object-fit:cover">
+                  <div class="drop-card-over">
+                    <div class="drop-card-title">All Products</div>
+                    <div class="drop-card-desc">Browse the full Toynk catalog.</div>
+                  </div>
+                </div>
+                <div class="drop-card">
+                  <img src="images/image3.png" style="width:100%;height:100%;object-fit:cover">
+                  <div class="drop-card-over">
+                    <div class="drop-card-title">Best Sellers</div>
+                    <div class="drop-card-desc">Top picks from our retailers.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a href="#" class="nav-link">Catalogs</a></li>
+          <li class="nav-item"><a href="shows.html" class="nav-link">Shows &amp; Appointments</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- HERO CAROUSEL -->
+<section class="hero">
+  <div class="hero-track" id="heroTrack">
+
+    <div class="hero-slide s1" style="background:#e8eeea;height:600px;overflow:hidden">
+      <div style="display:flex;width:100%;align-items:stretch;height:100%">
+        <!-- Left text panel -->
+        <div style="flex:0 0 42%;padding:3rem 3rem 3rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:1rem">
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888">NEW ARRIVALS | JUST LANDED</div>
+          <h2 style="font-size:2.4rem;font-weight:800;color:#111;line-height:1.1;letter-spacing:-.02em">New Arrivals</h2>
+          <p style="font-size:.92rem;color:#555;line-height:1.7;max-width:400px">Fresh licensed collectibles, apparel, drinkware, and fan favorites just landed — in-stock and ready to ship to your store. $150 minimum, only 2 per style.</p>
+          <div style="margin-top:.5rem">
+            <a href="newarrivals.html" style="display:inline-flex;align-items:center;background:#f5c842;color:#222;font-size:.82rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:13px 24px;border-radius:4px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#e0b230'" onmouseout="this.style.background='#f5c842'">Shop New Arrivals</a>
+          </div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;height:100%;overflow:hidden">
+          <div style="overflow:hidden;min-height:0"><img src="images/image2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image5.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image7.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Godzilla -->
+    <div class="hero-slide s2" style="background:#e5e8df;height:600px;overflow:hidden">
+      <div style="display:flex;width:100%;align-items:stretch;height:100%">
+        <div style="flex:0 0 42%;padding:3rem 3rem 3rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:1rem">
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888">COLLECTION | KAIJU KING</div>
+          <h2 style="font-size:2.4rem;font-weight:800;color:#111;line-height:1.1;letter-spacing:-.02em">Godzilla</h2>
+          <p style="font-size:.92rem;color:#555;line-height:1.7;max-width:400px">The King of the Monsters has arrived. Licensed Godzilla figures, drinkware, apparel, and collectibles — in-stock and ready to ship to your store.</p>
+          <div style="margin-top:.5rem">
+            <a href="#" style="display:inline-flex;align-items:center;background:#4a6741;color:#fff;font-size:.82rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:13px 24px;border-radius:4px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#3a5432'" onmouseout="this.style.background='#4a6741'">Shop Godzilla</a>
+          </div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;height:100%;overflow:hidden">
+          <div style="overflow:hidden;min-height:0"><img src="images/image1.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image6.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image4.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image8.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Pokemon -->
+    <div class="hero-slide s3" style="background:#f0ecd8;height:600px;overflow:hidden">
+      <div style="display:flex;width:100%;align-items:stretch;height:100%">
+        <div style="flex:0 0 42%;padding:3rem 3rem 3rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:1rem">
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888">COLLECTION | GOTTA STOCK 'EM ALL</div>
+          <h2 style="font-size:2.4rem;font-weight:800;color:#111;line-height:1.1;letter-spacing:-.02em">Pokémon</h2>
+          <p style="font-size:.92rem;color:#555;line-height:1.7;max-width:400px">Pikachu, Charizard, and the whole squad. Licensed Pokémon mugs, figures, plush, and apparel your customers love — ready to ship wholesale today.</p>
+          <div style="margin-top:.5rem">
+            <a href="#" style="display:inline-flex;align-items:center;background:#e6a817;color:#fff;font-size:.82rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:13px 24px;border-radius:4px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#cc9010'" onmouseout="this.style.background='#e6a817'">Shop Pokémon</a>
+          </div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;height:100%;overflow:hidden">
+          <div style="overflow:hidden;min-height:0"><img src="images/image7.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image5.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image4.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Disney -->
+    <div class="hero-slide s4" style="background:#e4e8f0;height:600px;overflow:hidden">
+      <div style="display:flex;width:100%;align-items:stretch;height:100%">
+        <div style="flex:0 0 42%;padding:3rem 3rem 3rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:1rem">
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888">COLLECTION | THE MAGIC IS REAL</div>
+          <h2 style="font-size:2.4rem;font-weight:800;color:#111;line-height:1.1;letter-spacing:-.02em">Disney</h2>
+          <p style="font-size:.92rem;color:#555;line-height:1.7;max-width:400px">From Mickey to Stitch — officially licensed Disney drinkware, apparel, figures, and home goods. In-stock and ready to wholesale.</p>
+          <div style="margin-top:.5rem">
+            <a href="#" style="display:inline-flex;align-items:center;background:#3a6aad;color:#fff;font-size:.82rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:13px 24px;border-radius:4px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#2a5490'" onmouseout="this.style.background='#3a6aad'">Shop Disney</a>
+          </div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;height:100%;overflow:hidden">
+          <div style="overflow:hidden;min-height:0"><img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image8.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image6.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="overflow:hidden;min-height:0"><img src="images/image1.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="hero-arr prev" id="heroPrev" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="hero-arr next" id="heroNext" aria-label="Next slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div class="hero-dots">
+    <button class="hdot on" data-i="0" aria-label="Slide 1"></button>
+    <button class="hdot" data-i="1" aria-label="Slide 2"></button>
+    <button class="hdot" data-i="2" aria-label="Slide 3"></button>
+    <button class="hdot" data-i="3" aria-label="Slide 4"></button>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#fff;padding:2.5rem var(--pad);border-top:1px solid #e8e8e8">
+  <div style="max-width:var(--max);margin:0 auto;background:#e8f0ee;border-radius:30px;padding:3rem 5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem">
+    <div style="display:flex;align-items:center;gap:1.75rem">
+      <div style="width:78px;height:78px;border-radius:50%;background:#4a8a8f;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="33" height="33" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div>
+        <div style="font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#222;margin-bottom:.4rem">Quick Customer Service</div>
+        <a href="contactus.html" style="font-size:.92rem;color:#4a8a8f;text-decoration:underline">Contact us</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.75rem">
+      <div style="width:78px;height:78px;border-radius:50%;background:#4a8a8f;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="33" height="33" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <div>
+        <div style="font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#222;margin-bottom:.4rem">Submit a Purchase Order</div>
+        <input type="file" id="poFileInput" accept=".pdf,.doc,.docx,.xls,.xlsx" style="display:none">
+        <a href="#" onclick="document.getElementById('poFileInput').click();return false;" style="font-size:.92rem;color:#4a8a8f;text-decoration:underline">Upload your PO</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1.75rem">
+      <div style="width:78px;height:78px;border-radius:50%;background:#4a8a8f;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="33" height="33" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div style="font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#222;margin-bottom:.4rem">FAQ</div>
+        <a href="faq.html" style="font-size:.92rem;color:#4a8a8f;text-decoration:underline">View frequently asked questions</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP BY CATEGORY / COLLECTION -->
+<section class="sbn-section">
+  <div class="sbn-tabs">
+    <button class="sbn-tab on" data-sbn="cats">Shop By Category</button>
+    <button class="sbn-tab" data-sbn="colls">Shop By Collection</button>
+  </div>
+
+  <!-- Category panel -->
+  <div class="sbn-panel on" id="sbn-cats">
+    <div class="sbn-scroll-wrap">
+      <div class="sbn-track" id="sbnCatTrack">
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image1.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Apparel &amp; Costumes</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Collectibles</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Home &amp; Office</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image4.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Toys &amp; Games</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image5.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Party &amp; Seasonal</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image6.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Drinkware</div></a>
+      </div>
+    </div>
+    <button class="sbn-arrow sbn-arrow-prev" id="sbnCatPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="sbn-arrow" id="sbnCatNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </div>
+
+  <!-- Collection panel -->
+  <div class="sbn-panel" id="sbn-colls">
+    <div class="sbn-scroll-wrap">
+      <div class="sbn-track" id="sbnCollTrack">
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image7.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Toynk</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image8.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Cardsmiths</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image1.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Syndicate Collectibles</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Buffy the Vampire Slayer</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Chucky</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image4.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">DC Universe</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image5.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Disney</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image6.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Doctor Who</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image7.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Evil Dead</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image8.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Fallout</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image1.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Friday the 13th</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Futurama</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Geeki Tiki</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image4.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Godzilla</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image5.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Harry Potter</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image6.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Hello Kitty</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image7.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Jaws</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image8.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Lord of the Rings</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image1.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Magic: The Gathering</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Marvel</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Masters of the Universe</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image4.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">MLB · NBA · NFL</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image5.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Naruto</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image6.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Nightmare Before Christmas</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image7.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">One Piece</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image8.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Pac-Man</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image1.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Peanuts</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Pokémon</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Resident Evil</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image4.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Scooby-Doo</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image5.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">South Park</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image6.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Star Wars</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image7.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Stranger Things</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image8.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Street Fighter</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image1.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Super Mario</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image2.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Supernatural</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">TMNT</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image4.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">The Exorcist</div></a>
+        <a href="#" class="sbn-card"><div class="sbn-img"><img src="images/image5.png" style="width:100%;height:100%;object-fit:cover;display:block"></div><div class="sbn-lbl">Yu-Gi-Oh!</div></a>
+      </div>
+    </div>
+    <button class="sbn-arrow sbn-arrow-prev" id="sbnCollPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="sbn-arrow" id="sbnCollNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </div>
+</section>
+
+<!-- HOTSPOT DISPLAY SECTION -->
+<section class="hs-section">
+  <div class="hs-wrap">
+
+    <!-- Left: product list -->
+    <div class="hs-left">
+      <div class="hs-eyebrow">Shop the display</div>
+      <h2 class="hs-title">Best Sellers From Market</h2>
+      <div class="hs-count">Showing 3 Products</div>
+      <div class="hs-list">
+
+        <div class="hs-item">
+          <div class="hs-thumb" style="overflow:hidden"><img src="images/image11.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div>
+            <div class="hs-meta">Trading Cards, Cardsmiths</div>
+            <div class="hs-name">Currency Trading Cards Series Five</div>
+            <div class="hs-sku">CS-5001</div>
+            <a href="#" class="hs-login">Login to view price</a>
+          </div>
+        </div>
+
+        <div class="hs-item">
+          <div class="hs-thumb" style="overflow:hidden"><img src="images/image9.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div>
+            <div class="hs-meta">Trading Cards, Pokémon</div>
+            <div class="hs-name">Pokémon TCG Booster Bundle Pack</div>
+            <div class="hs-sku">PK-3042</div>
+            <a href="#" class="hs-login">Login to view price</a>
+          </div>
+        </div>
+
+        <div class="hs-item">
+          <div class="hs-thumb" style="overflow:hidden"><img src="images/image10.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div>
+            <div class="hs-meta">Trading Cards, Magic: The Gathering</div>
+            <div class="hs-name">Magic: The Gathering Commander Deck Set</div>
+            <div class="hs-sku">MTG-8821</div>
+            <a href="#" class="hs-login">Login to view price</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: image with hotspots -->
+    <div class="hs-right">
+      <div class="hs-img-wrap">
+        <img src="images/image3.png" style="width:100%;height:100%;object-fit:cover;display:block">
+
+        <!-- Dot 1 -->
+        <div class="hs-dot" style="left:30%;top:35%">
+          <div class="hs-tooltip">Currency Trading Cards Series Five</div>
+        </div>
+
+        <!-- Dot 2 -->
+        <div class="hs-dot" style="left:75%;top:12%">
+          <div class="hs-tooltip">Pokémon TCG Booster Bundle Pack</div>
+        </div>
+
+        <!-- Dot 3 -->
+        <div class="hs-dot" style="left:65%;top:55%">
+          <div class="hs-tooltip">Magic: The Gathering Commander Deck Set</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STOCK YOUR STORE GRID -->
+<section class="sys-section">
+  <div class="sys-inner">
+
+    <!-- Row 1: tall left + 2 stacked right -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem">
+
+      <!-- Left: BLANKETS & THROWS (tall, spans both rows) -->
+      <a href="#" class="sys-card" style="height:560px">
+        <div class="sys-img" style="height:100%">
+          <img src="images/image12.png" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="sys-label">
+          <span class="sys-cat">Blankets &amp; Throws</span>
+          <span class="sys-link">Stock Your Store</span>
+        </div>
+      </a>
+
+      <!-- Right: 2 stacked cards -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem;height:560px">
+        <a href="#" class="sys-card" style="flex:1">
+          <div class="sys-img" style="height:100%">
+            <img src="images/image13.png" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div class="sys-label">
+            <span class="sys-cat">Party Decorations</span>
+            <span class="sys-link">Stock Your Store</span>
+          </div>
+        </a>
+        <a href="#" class="sys-card" style="flex:1">
+          <div class="sys-img" style="height:100%">
+            <img src="images/image14.png" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div class="sys-label">
+            <span class="sys-cat">Drinkables</span>
+            <span class="sys-link">Stock Your Store</span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Row 2+3: left column stacked, right column tall Get Organized -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem">
+      <!-- Left: Jigsaw Puzzles + Plush stacked -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem">
+        <a href="#" class="sys-card" style="flex:1">
+          <div class="sys-img" style="height:100%">
+            <img src="images/image15.png" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div class="sys-label">
+            <span class="sys-cat">Jigsaw Puzzles</span>
+            <span class="sys-link">Stock Your Store</span>
+          </div>
+        </a>
+        <a href="#" class="sys-card" style="flex:1">
+          <div class="sys-img" style="height:100%">
+            <img src="images/image16.png" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div class="sys-label">
+            <span class="sys-cat">Plush</span>
+            <span class="sys-link">Stock Your Store</span>
+          </div>
+        </a>
+      </div>
+      <!-- Right: Get Organized tall -->
+      <a href="#" class="sys-card" style="min-height:560px">
+        <div class="sys-img" style="height:100%">
+          <img src="images/image17.png" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="sys-label">
+          <span class="sys-cat">Get Organized</span>
+          <span class="sys-link">Stock Your Store</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Row 4: 3 equal cards side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem">
+      <a href="#" class="sys-card">
+        <div class="sys-img">
+          <img src="images/image18.png" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="sys-label">
+          <span class="sys-cat">Pins</span>
+          <span class="sys-link">Stock Your Store</span>
+        </div>
+      </a>
+      <a href="#" class="sys-card">
+        <div class="sys-img">
+          <img src="images/image19.png" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="sys-label">
+          <span class="sys-cat">Planters</span>
+          <span class="sys-link">Stock Your Store</span>
+        </div>
+      </a>
+      <a href="#" class="sys-card">
+        <div class="sys-img">
+          <img src="images/image20.png" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="sys-label">
+          <span class="sys-cat">Lights &amp; Mood Lights</span>
+          <span class="sys-link">Stock Your Store</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="blog-section">
+  <div class="blog-inner">
+    <div class="blog-eyebrow">Toynk Blog</div>
+    <h2 class="blog-heading">Read All About It</h2>
+    <div class="blog-grid">
+
+      <a href="#" class="blog-card">
+        <div class="blog-thumb" style="overflow:hidden"><img src="images/image21.png" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px"></div>
+        <div class="blog-card-title">Garbage Pail Kids: Ultimate Guide (2026 Updated)</div>
+        <div class="blog-excerpt">As a long-time collector, I've explored the world of these quirky and iconic trading cards. In this guide, I'll share my firsthand experiences and insights to help you uncover the best Garbage...</div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-thumb" style="overflow:hidden"><img src="images/image22.png" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px"></div>
+        <div class="blog-card-title">List of Garbage Pail Kid Names (2026 Updated)</div>
+        <div class="blog-excerpt">There are a number of Garbage Pail Kids out there ever since its inception in 1985, and 80's kids will definitely remember them as the taboo sticker trading cards that...</div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-thumb" style="overflow:hidden"><img src="images/image23.png" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px"></div>
+        <div class="blog-card-title">10 Best Action Figure Brands for Collectors (2026)</div>
+        <div class="blog-excerpt">When it comes to action figures, not all brands are created equal. The best action figure brands offer exceptional quality, detail, and variety, catering to fans of all ages. From...</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+// ── Search overlay ──
+(function(){
+  const trigger = document.getElementById('searchTrigger');
+  const overlay = document.getElementById('searchOverlay');
+  const close   = document.getElementById('searchClose');
+  const input   = document.getElementById('searchInput');
+  trigger.addEventListener('click', ()=>{ overlay.classList.add('open'); input.focus(); });
+  close.addEventListener('click',   ()=>{ overlay.classList.remove('open'); input.value=''; });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') overlay.classList.remove('open'); });
+})();
+
+// ── Hero carousel ──
+(function(){
+  const track = document.getElementById('heroTrack');
+  const dots = document.querySelectorAll('.hdot');
+  let cur = 0, timer;
+
+  function go(n){
+    const slides = track.children.length;
+    cur = ((n % slides) + slides) % slides;
+    track.style.transform = 'translateX(-' + cur*100 + '%)';
+    dots.forEach((d,i) => d.classList.toggle('on', i===cur));
+    reset();
+  }
+  function reset(){ clearInterval(timer); timer = setInterval(()=>go(cur+1), 5000); }
+
+  document.getElementById('heroPrev').onclick = ()=>go(cur-1);
+  document.getElementById('heroNext').onclick = ()=>go(cur+1);
+  dots.forEach(d => d.onclick = ()=>go(+d.dataset.i));
+
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('mouseenter', ()=>clearInterval(timer));
+  hero.addEventListener('mouseleave', reset);
+  reset();
+})();
+
+// ── Shop By tabs ──
+document.querySelectorAll('.sbn-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.sbn-tab').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.sbn-panel').forEach(p=>p.classList.remove('on'));
+    btn.classList.add('on');
+    document.getElementById('sbn-'+btn.dataset.sbn).classList.add('on');
+  });
+});
+
+// ── Shop By carousels ──
+function makeScroller(trackId, prevId, nextId){
+  const track = document.getElementById(trackId);
+  let pos = 0;
+  function visCount(){ return window.innerWidth>=1200?4:window.innerWidth>=900?3:2; }
+  function cardW(){ return (track.parentElement.offsetWidth - (visCount()-1)*20) / visCount(); }
+  function maxPos(){ return Math.max(0, track.children.length - visCount()); }
+  function update(){ track.style.transform='translateX(-'+(pos*(cardW()+20))+'px)'; }
+  document.getElementById(prevId).onclick=()=>{ if(pos>0){pos--;update();} };
+  document.getElementById(nextId).onclick=()=>{ if(pos<maxPos()){pos++;update();} };
+  window.addEventListener('resize', update);
+}
+makeScroller('sbnCatTrack','sbnCatPrev','sbnCatNext');
+makeScroller('sbnCollTrack','sbnCollPrev','sbnCollNext');
+
+// ── Best sellers carousel ──
+(function(){
+  const track = document.getElementById('bsTrack');
+  const cards = track.children;
+  const gap = 16;
+  let pos = 0;
+
+  function vis(){ return window.innerWidth>=1100?5:window.innerWidth>=768?4:2; }
+  function maxP(){ return Math.max(0, cards.length - vis()); }
+
+  function update(){
+    const w = track.parentElement.offsetWidth;
+    const v = vis();
+    const cw = (w - gap*(v-1)) / v;
+    track.style.transform = 'translateX(-' + pos*(cw+gap) + 'px)';
+  }
+
+  document.getElementById('bsPrev').onclick = ()=>{ if(pos>0){pos--;update();} };
+  document.getElementById('bsNext').onclick = ()=>{ if(pos<maxP()){pos++;update();} };
+  window.addEventListener('resize', update);
+})();
+</script>
+
+<!-- FOOTER -->
+<footer style="background:#f0f0f0;padding:3rem 2rem 1.5rem">
+  <div style="max-width:1280px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem">
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Learn More</div>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">About Us</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Catalogs</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Privacy Policy</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Terms &amp; Conditions</a>
+      </div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Customer Service</div>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Contact Us</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Rep Locator</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Orders &amp; Shipping</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Resale Certificates</a>
+      </div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Follow Us</div>
+        <div style="display:flex;gap:.75rem">
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none;transition:background .2s,color .2s" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none;transition:background .2s,color .2s" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.853 0 1.267.64 1.267 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.568 0-2.386-1.716-4.054-4.165-4.054-2.837 0-4.5 2.128-4.5 4.327 0 .857.33 1.775.741 2.276a.3.3 0 01.069.284c-.076.312-.244.995-.277 1.134-.044.183-.146.222-.336.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.522 0 10-4.477 10-10S17.522 2 12 2z"/></svg>
+          </a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none;transition:background .2s,color .2s" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none;transition:background .2s,color .2s" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #ddd;padding-top:1.25rem;display:flex;flex-direction:column;gap:.5rem">
+      <div style="font-size:.8rem;color:#888">Copyright &copy; 2026 Toynk Wholesale.</div>
+      <div style="font-size:.8rem;color:#555;font-weight:600">Powered By <a href="#" style="color:#4a8a8f;text-decoration:none">Wizcommerce</a></div>
+    </div>
+  </div>
+</foote 

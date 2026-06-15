@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shows & Appointments — Toynk Wholesale</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --clr-accent: #e63028;
+  --clr-border: #e0e0e0;
+  --clr-text: #222222;
+  --clr-muted: #888888;
+  --clr-teal: #4a8a8f;
+  --font: 'Inter', sans-serif;
+  --serif: 'Playfair Display', serif;
+  --r: 8px; --r-sm: 4px;
+  --t: 0.2s ease;
+  --pad: 2rem;
+  --max: 1280px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);font-size:1rem;color:var(--clr-text);background:#fff;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+ul{list-style:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* ── ANNOUNCEMENT BAR ── */
+.ann-bar{background:#d6eef9;color:#166c94;text-align:center;padding:.55rem 1rem;font-size:.82rem;font-weight:400;letter-spacing:.01em;border-bottom:1px solid #b8dff2}
+.ann-bar strong{font-weight:700}
+.ann-bar span{color:#5aadd4;margin:0 .6rem}
+
+/* ── HEADER ── */
+header{background:#fff;border-bottom:1px solid var(--clr-border);position:sticky;top:0;z-index:100}
+.hdr-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:90px;padding:0 var(--pad);position:relative}
+.hdr-left{display:flex;align-items:center}
+.hdr-center{display:flex;justify-content:center}
+.hdr-right{display:flex;align-items:center;justify-content:flex-end;gap:1.25rem}
+.h-search-ico{color:#444;padding:.4rem;display:flex;align-items:center;cursor:pointer;transition:color var(--t)}
+.h-search-ico:hover{color:var(--clr-accent)}
+.h-search-ico svg{width:22px;height:22px}
+.logo img{height:52px;width:auto}
+.logo-text{font-size:1.3rem;font-weight:800;color:var(--clr-text);display:none}
+.rep-locator{display:flex;flex-direction:column;align-items:center;line-height:1.15;color:#3d6b6b;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:color var(--t);white-space:nowrap}
+.rep-locator:hover{color:var(--clr-accent)}
+.btn-signin{display:flex;align-items:center;gap:.4rem;color:#333;font-size:.82rem;font-weight:500;transition:color var(--t);white-space:nowrap}
+.btn-signin:hover{color:var(--clr-accent)}
+.btn-signin .signin-icon{width:32px;height:32px;border:1.5px solid #bbb;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color var(--t)}
+.btn-signin:hover .signin-icon{border-color:var(--clr-accent)}
+.btn-signin .signin-icon svg{width:17px;height:17px}
+.ico-btn{color:#333;padding:.3rem;display:flex;align-items:center;position:relative;transition:color var(--t)}
+.ico-btn:hover{color:var(--clr-accent)}
+.ico-btn svg{width:26px;height:26px}
+.cart-badge{position:absolute;top:0;right:0;background:var(--clr-accent);color:#fff;font-size:9px;font-weight:700;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.hdr-nav{background:#fff}
+.nav-list{display:flex;align-items:center;justify-content:center;gap:0;height:50px}
+.nav-link{color:#333;font-size:.8rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:.5rem 1.4rem;transition:color var(--t);white-space:nowrap;display:flex;align-items:center;gap:.3rem}
+.nav-link:hover,.nav-link.active{color:var(--clr-accent)}
+
+/* Search overlay */
+.search-overlay{position:fixed;top:0;left:0;right:0;background:#fff;display:flex;align-items:center;justify-content:center;gap:1rem;padding:0 2rem;height:90px;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s;z-index:9999;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+.search-overlay.open{opacity:1;visibility:visible}
+.search-overlay-bar{display:flex;align-items:center;gap:.65rem;border:1.5px solid #ccc;border-radius:var(--r);padding:.65rem 1.1rem;background:#fff;width:min(680px,70%)}
+.search-overlay-bar svg.s-ico{width:18px;height:18px;color:#999;flex-shrink:0}
+.search-overlay-bar input{flex:1;border:none;outline:none;font-size:.95rem;color:var(--clr-text);font-family:var(--font)}
+.search-overlay-bar input::placeholder{color:#aaa}
+.search-close{color:#555;cursor:pointer;display:flex;align-items:center;transition:color var(--t)}
+.search-close svg{width:24px;height:24px}
+
+/* ── PAGE CONTENT ── */
+.page-content{max-width:1100px;margin:0 auto;padding:4rem var(--pad) 5rem}
+
+/* Trade Shows section */
+.shows-title{font-family:var(--serif);font-size:3rem;font-weight:400;text-align:center;margin-bottom:.75rem}
+.shows-sub{font-size:.95rem;color:#555;text-align:center;margin-bottom:3.5rem}
+.shows-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:4rem}
+.show-card{text-align:center}
+.show-date-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+.show-date-line{flex:1;height:1px;background:#ccc}
+.show-date{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#333;white-space:nowrap}
+.show-name{font-family:var(--serif);font-size:2.2rem;font-weight:400;margin-bottom:.5rem;line-height:1.2}
+.show-divider{width:100%;height:1px;background:#ccc;margin:.75rem 0}
+.show-venue{font-size:.9rem;font-weight:700;color:#222;margin-bottom:.3rem}
+.show-addr{font-size:.88rem;color:#555;line-height:1.7}
+
+/* Book Appointment section */
+.book-section{text-align:center;padding:2rem 0 1rem;border-top:1px solid var(--clr-border)}
+.book-title{font-family:var(--serif);font-size:2.8rem;font-weight:400;margin-bottom:1.5rem}
+.book-auth{display:flex;justify-content:flex-end;gap:1.25rem;margin-bottom:1.5rem}
+.book-auth a{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#333;transition:color var(--t)}
+.book-auth a:hover{color:var(--clr-teal)}
+
+/* Select Appointment heading */
+.appt-select-title{display:flex;align-items:center;justify-content:center;gap:.65rem;font-size:1rem;font-weight:700;color:#222;margin-bottom:2rem}
+.appt-select-title svg{width:20px;height:20px}
+
+/* Appointment cards */
+.appt-list{display:flex;flex-direction:column;gap:0}
+.appt-card{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 1.75rem;border:1px solid #e0e0e0;border-bottom:none;background:#fff}
+.appt-card:last-child{border-bottom:1px solid #e0e0e0}
+.appt-info{flex:1}
+.appt-name{font-size:.95rem;font-weight:700;color:#222;margin-bottom:.2rem}
+.appt-duration{font-size:.85rem;color:#555;margin-bottom:.5rem}
+.appt-desc{font-size:.85rem;color:#666}
+.appt-book-btn{flex-shrink:0;background:#111;color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.4rem;border-radius:2px;transition:background var(--t);cursor:pointer;border:none;font-family:var(--font)}
+.appt-book-btn:hover{background:#333}
+
+/* ── BOOKING MODAL ── */
+.booking-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;display:none;align-items:center;justify-content:center;padding:1.5rem}
+.booking-overlay.open{display:flex}
+.booking-modal{background:#fff;width:min(900px,100%);max-height:90vh;border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.22)}
+.bm-header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.1rem 1.75rem;border-bottom:1px solid #e8e8e8}
+.bm-back{display:flex;align-items:center;gap:.4rem;font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#333;cursor:pointer;background:none;border:none;font-family:var(--font);transition:color var(--t)}
+.bm-back:hover{color:var(--clr-accent)}
+.bm-back svg{width:16px;height:16px}
+.bm-title{font-size:1rem;font-weight:700;color:#111;text-align:center}
+.bm-close{display:flex;justify-content:flex-end}
+.bm-close-btn{background:none;border:none;cursor:pointer;color:#555;display:flex;align-items:center;transition:color var(--t)}
+.bm-close-btn:hover{color:var(--clr-accent)}
+.bm-close-btn svg{width:22px;height:22px}
+.bm-body{overflow-y:auto;padding:1.75rem}
+.bm-appt-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:.65rem}
+.bm-appt-card{border:1px solid #e0e0e0;border-radius:var(--r-sm);padding:1rem 1.25rem;display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}
+.bm-appt-name{font-size:.92rem;font-weight:700;color:#111;margin-bottom:.25rem}
+.bm-appt-dur{font-size:.82rem;color:#555}
+.bm-appt-x{background:none;border:none;cursor:pointer;color:#555;padding:0;display:flex;align-items:center;transition:color var(--t)}
+.bm-appt-x:hover{color:var(--clr-accent)}
+.bm-appt-x svg{width:20px;height:20px}
+.bm-tz{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;text-align:center;margin-bottom:1.25rem}
+.bm-tz span{text-decoration:underline;cursor:pointer}
+.bm-days{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid #e0e0e0;border-radius:var(--r-sm);overflow:hidden}
+.bm-day-col{display:flex;flex-direction:column}
+.bm-day-col+.bm-day-col{border-left:1px solid #e0e0e0}
+.bm-day-head{text-align:center;padding:.75rem .5rem .5rem;border-bottom:1px solid #e0e0e0;background:#fafafa}
+.bm-day-week{font-size:.63rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#888;margin-bottom:.15rem}
+.bm-day-name{font-size:1.05rem;font-weight:700;color:#111}
+.bm-day-date{font-size:.75rem;color:#555}
+.bm-slots{display:flex;flex-direction:column}
+.bm-slot{padding:.7rem .5rem;text-align:center;font-size:.82rem;font-weight:600;color:#111;border-bottom:1px solid #f0f0f0;cursor:pointer;transition:background var(--t),color var(--t);background:#fff}
+.bm-slot:last-child{border-bottom:none}
+.bm-slot:hover{background:#111;color:#fff}
+.bm-slot.selected{background:#111;color:#fff}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  Easy Wholesale Ordering — <strong>$150 Minimum</strong><span>•</span><strong>Only 2 Per Style</strong><span>•</span>In-Stock &amp; Ready to Ship
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-top">
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-overlay-bar">
+        <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search..." id="searchInput" autocomplete="off">
+      </div>
+      <button class="search-close" id="searchClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="hdr-left">
+      <button class="h-search-ico" id="searchTrigger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+    <div class="hdr-center">
+      <div class="logo">
+        <img src="https://toynkb2b.com/wp-content/uploads/2024/05/image-2-1.png" alt="Toynk Wholesale"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-text">TOYNK B2B</span>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <a href="#" class="rep-locator">REP<br>LOCATOR</a>
+      <a href="login.html" class="btn-signin">
+        <span class="signin-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
+        Sign In/Sign Up
+      </a>
+      <a href="#" class="ico-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h12l2 7H4L6 2z"/><path d="M4 9v11a2 2 0 002 2h12a2 2 0 002-2V9"/><path d="M9 9v3a3 3 0 006 0V9"/></svg>
+        <span class="cart-badge">0</span>
+      </a>
+    </div>
+  </div>
+  <div class="hdr-nav">
+    <div class="wrap">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#" class="nav-link">Collections</a></li>
+          <li><a href="newarrivals.html" class="nav-link">New Arrivals</a></li>
+          <li><a href="#" class="nav-link">Preorders</a></li>
+          <li><a href="#" class="nav-link">Seasonal</a></li>
+          <li><a href="#" class="nav-link">Shop All</a></li>
+          <li><a href="#" class="nav-link">Catalogs</a></li>
+          <li><a href="shows.html" class="nav-link active">Shows &amp; Appointments</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE CONTENT -->
+<div class="page-content">
+
+  <!-- Trade Shows -->
+  <h1 class="shows-title">Trade Shows</h1>
+  <p class="shows-sub">Come see us at the summer trade shows!</p>
+
+  <div class="shows-grid">
+    <div class="show-card">
+      <div class="show-date-row">
+        <div class="show-date-line"></div>
+        <div class="show-date">June 8–14th</div>
+        <div class="show-date-line"></div>
+      </div>
+      <h2 class="show-name">Atlanta Market</h2>
+      <div class="show-divider"></div>
+      <div class="show-venue">AmericasMart — Building 2, Suite 1735</div>
+      <div class="show-addr">40 John Portman Boulevard NW<br>Atlanta, GA 30303</div>
+    </div>
+
+    <div class="show-card">
+      <div class="show-date-row">
+        <div class="show-date-line"></div>
+        <div class="show-date">June 23–30th</div>
+        <div class="show-date-line"></div>
+      </div>
+      <h2 class="show-name">Dallas Total Home &amp; Gift Market</h2>
+      <div class="show-divider"></div>
+      <div class="show-venue">Dallas Market Center — WTC Suite 220</div>
+      <div class="show-addr">2050 North Stemmons Freeway<br>Dallas, TX 75207</div>
+    </div>
+  </div>
+
+  <!-- Book an Appointment -->
+  <div class="book-section">
+    <h2 class="book-title">Book an Appointment at the Show</h2>
+    <div class="book-auth">
+      <a href="register.html">SIGN UP</a>
+      <a href="login.html">LOGIN</a>
+    </div>
+
+    <div class="appt-select-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Select Appointment
+    </div>
+
+    <div class="appt-list">
+      <div class="appt-card">
+        <div class="appt-info">
+          <div class="appt-name">Virtual Appointment — Video</div>
+          <div class="appt-duration">50 minutes</div>
+          <div class="appt-desc">Video Appointment x Toynk</div>
+        </div>
+        <button class="appt-book-btn" data-name="Virtual Appointment — Video" data-dur="50 minutes">Book</button>
+      </div>
+
+      <div class="appt-card">
+        <div class="appt-info">
+          <div class="appt-name">Toynk Dallas Showroom Appointment Request</div>
+          <div class="appt-duration">30 minutes</div>
+        </div>
+        <button class="appt-book-btn" data-name="Toynk Dallas Showroom Appointment Request" data-dur="30 minutes">Book</button>
+      </div>
+
+      <div class="appt-card">
+        <div class="appt-info">
+          <div class="appt-name">Toynk Atlanta Showroom Appointment Request</div>
+          <div class="appt-duration">30 minutes</div>
+        </div>
+        <button class="appt-book-btn" data-name="Toynk Atlanta Showroom Appointment Request" data-dur="30 minutes">Book</button>
+      </div>
+
+      <div class="appt-card">
+        <div class="appt-info">
+          <div class="appt-name">Phone Appointment</div>
+          <div class="appt-duration">30 minutes</div>
+          <div class="appt-desc">Phone Appointment x Toynk</div>
+        </div>
+        <button class="appt-book-btn" data-name="Phone Appointment" data-dur="30 minutes">Book</button>
+      </div>
+
+      <div class="appt-card">
+        <div class="appt-info">
+          <div class="appt-name">California Showroom Appointment</div>
+          <div class="appt-duration">50 minutes</div>
+          <div class="appt-desc">Visit us at our California main office and showroom!</div>
+        </div>
+        <button class="appt-book-btn" data-name="California Showroom Appointment" data-dur="50 minutes">Book</button>
+      </div>
+
+      <div class="appt-card">
+        <div class="appt-info">
+          <div class="appt-name">Store Visit (local Bay Area only)</div>
+          <div class="appt-duration">50 minutes</div>
+          <div class="appt-desc">Book an in-person appointment at your store or office</div>
+        </div>
+        <button class="appt-book-btn" data-name="Store Visit (local Bay Area only)" data-dur="50 minutes">Book</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="booking-overlay" id="bookingOverlay">
+  <div class="booking-modal">
+    <div class="bm-header">
+      <button class="bm-back" id="bmBack">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Select Appointment
+      </button>
+      <div class="bm-title">Date &amp; Time</div>
+      <div class="bm-close">
+        <button class="bm-close-btn" id="bmClose">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="bm-body">
+      <div class="bm-appt-label">Appointment</div>
+      <div class="bm-appt-card">
+        <div>
+          <div class="bm-appt-name" id="bmApptName">—</div>
+          <div class="bm-appt-dur" id="bmApptDur">—</div>
+        </div>
+        <button class="bm-appt-x" id="bmApptX">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="bm-tz">Time Zone: <span>Asia/Calcutta (GMT+05:30)</span></div>
+      <div class="bm-days" id="bmDays">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:#f0f0f0;padding:3rem 2rem 1.5rem;margin-top:3rem">
+  <div style="max-width:1280px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem">
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Learn More</div>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">About Us</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Catalogs</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Privacy Policy</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Terms &amp; Conditions</a>
+      </div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Customer Service</div>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Contact Us</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Rep Locator</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Orders &amp; Shipping</a>
+        <a href="#" style="display:block;font-size:.88rem;color:#555;margin-bottom:.65rem;text-decoration:none" onmouseover="this.style.color='#4a8a8f'" onmouseout="this.style.color='#555'">Resale Certificates</a>
+      </div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#333;margin-bottom:1.25rem">Follow Us</div>
+        <div style="display:flex;gap:.75rem">
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.853 0 1.267.64 1.267 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.568 0-2.386-1.716-4.054-4.165-4.054-2.837 0-4.5 2.128-4.5 4.327 0 .857.33 1.775.741 2.276a.3.3 0 01.069.284c-.076.312-.244.995-.277 1.134-.044.183-.146.222-.336.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.522 0 10-4.477 10-10S17.522 2 12 2z"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" style="width:40px;height:40px;border-radius:50%;border:1.5px solid #d4b84a;display:flex;align-items:center;justify-content:center;color:#d4b84a;text-decoration:none" onmouseover="this.style.background='#d4b84a';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='#d4b84a'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #ddd;padding-top:1.25rem;display:flex;flex-direction:column;gap:.5rem">
+      <div style="font-size:.8rem;color:#888">Copyright &copy; 2026 Toynk Wholesale.</div>
+      <div style="font-size:.8rem;color:#555;font-weight:600">Powered By <a href="#" style="color:#4a8a8f;text-decoration:none">Wizcommerce</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const trigger = document.getElementById('searchTrigger');
+  const overlay = document.getElementById('searchOverlay');
+  const close   = document.getElementById('searchClose');
+  const input   = document.getElementById('searchInput');
+  trigger.addEventListener('click', ()=>{ overlay.classList.add('open'); input.focus(); });
+  close.addEventListener('click',   ()=>{ overlay.classList.remove('open'); input.value=''; });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') overlay.classList.remove('open'); });
+})();
+
+// ── BOOKING MODAL ──
+(function(){
+  const bookingOverlay = document.getElementById('bookingOverlay');
+  const bmBack  = document.getElementById('bmBack');
+  const bmClose = document.getElementById('bmClose');
+  const bmApptX = document.getElementById('bmApptX');
+  const bmApptName = document.getElementById('bmApptName');
+  const bmApptDur  = document.getElementById('bmApptDur');
+  const bmDays     = document.getElementById('bmDays');
+
+  // Generate 5 upcoming days (skipping today, picking next weekdays)
+  function getUpcomingDays(count) {
+    const days = [];
+    const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    let d = new Date();
+    d.setDate(d.getDate() + 1);
+    while (days.length < count) {
+      if (d.getDay() !== 0) { // skip Sunday
+        const diff = Math.ceil((d - new Date()) / (1000*60*60*24));
+        let weekLabel = '';
+        if (diff <= 7) weekLabel = 'NEXT WEEK';
+        else if (diff <= 14) weekLabel = 'IN 2 WEEKS';
+        else weekLabel = 'IN 3 WEEKS';
+        days.push({
+          week: weekLabel,
+          name: dayNames[d.getDay()],
+          mon: monthNames[d.getMonth()],
+          date: d.getDate(),
+          dayOfWeek: d.getDay()
+        });
+      }
+      d.setDate(d.getDate() + 1);
+    }
+    return days;
+  }
+
+  // Generate time slots (every 30 min, 9am-9pm)
+  function getTimeSlots(dayOfWeek) {
+    // Weekends: fewer slots; weekdays: full set
+    const slots = [];
+    const start = (dayOfWeek === 6) ? 10 : 9; // Sat starts later
+    const end   = (dayOfWeek === 6) ? 17 : 21;
+    for (let h = start; h < end; h++) {
+      for (let m of [0, 30]) {
+        const hour = h > 12 ? h - 12 : (h === 0 ? 12 : h);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const min  = m === 0 ? '00' : '30';
+        slots.push(`${hour}:${min} ${ampm}`);
+      }
+    }
+    return slots;
+  }
+
+  function buildCalendar() {
+    bmDays.innerHTML = '';
+    const days = getUpcomingDays(5);
+    days.forEach(day => {
+      const slots = getTimeSlots(day.dayOfWeek);
+      const col = document.createElement('div');
+      col.className = 'bm-day-col';
+      col.innerHTML = `
+        <div class="bm-day-head">
+          <div class="bm-day-week">${day.week}</div>
+          <div class="bm-day-name">${day.name}</div>
+          <div class="bm-day-date">${day.mon} ${day.date}</div>
+        </div>
+        <div class="bm-slots">
+          ${slots.map(s => `<div class="bm-slot">${s}</div>`).join('')}
+        </div>`;
+      bmDays.appendChild(col);
+    });
+    // Slot click
+    bmDays.querySelectorAll('.bm-slot').forEach(el => {
+      el.addEventListener('click', function(){
+        bmDays.querySelectorAll('.bm-slot').forEach(s => s.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+  }
+
+  function openModal(name, dur) {
+    bmApptName.textContent = name;
+    bmApptDur.textContent  = dur;
+    buildCalendar();
+    bookingOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    bookingOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Open on BOOK button click
+  document.querySelectorAll('.appt-book-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      openModal(btn.dataset.name, btn.dataset.dur);
+    });
+  });
+
+  bmBack.addEventListener('click',  closeModal);
+  bmClose.addEventListener('click', closeModal);
+  bmApptX.addEventListener('click', closeModal);
+  bookingOverlay.addEventListener('click', e => { if(e.target === bookingOverlay) closeModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+})();
+</script>
+</body>
+</html>
